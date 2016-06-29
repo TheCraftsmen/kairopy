@@ -10,6 +10,7 @@ class AllTurn(Resource):
 
     @auth.login_required
     def get(self,user_id):
+        if int(current_user.get_id()) != int(user_id): return
         listOfTurn = list()
         turnQuery = RequestList.query.filter(RequestList.status.in_((0, 1))).filter_by(user_id=user_id)
         if turnQuery:
@@ -37,6 +38,7 @@ class CleanAll(Resource):
 
     @auth.login_required
     def put(self,user_id):
+        if int(current_user.get_id()) != int(user_id): return
         turnQuery = RequestList.query.filter_by(user_id=user_id)
         if turnQuery:
             for row in turnQuery:
@@ -52,6 +54,7 @@ class ChangeSettings(Resource):
 
     @auth.login_required
     def put(self, user_id, column_name, new_value):
+        if int(current_user.get_id()) != int(user_id): return
         us = UserSettings.query.filter_by(user_id=user_id).first()
         if us:
             exec("us.%s = '%s' " % (column_name,new_value))
@@ -65,6 +68,7 @@ class UpdateStatus(Resource):
 
     @auth.login_required
     def put(self, api_num, user):
+        if int(current_user.get_id()) != int(user): return
         updateTurn = RequestList.query.filter_by(user_id=user).filter(RequestList.request_date >=datetime.date.today()).filter_by(number=api_num).limit(1)
         for row in updateTurn:
             row.status += 1
