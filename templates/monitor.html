@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Kairopy</title>
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<link rel="stylesheet" href="{{ url_for('static', filename='assets/bootstrap/css/bootstrap.min.css') }}">
+<script type="text/javascript"
+  src="static/jquery-1.11.3.min.js">
+</script>
+<script type="text/javascript">
+  var $SCRIPT_ROOT = {{ request.script_root|tojson|safe }};
+</script>
+</head>
+<body>
+  <nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="#">Kairopy</a>
+    </div>
+    <ul class="nav navbar-nav">
+      <li><a href="/logout">Cerrar Session</a></li>
+      <li ><a href="/">Principal</a></li>
+      <li class="active"><a href="/monitor">Monitor</a></li>
+      <li><a href="/request">Formulario</a></li>
+      <li><a href="#"></a></li>
+      <li><a href="#"></a></li>
+      <li><a href="#"></a></li>
+      <li><a href="#"></a></li>
+      <li><a onclick="cleanFirst()" >Siguiente</a></li>
+      <li><a onclick="cleanall()" >Borrar Todo</a></li>
+    </ul>
+  </div>
+</nav>
+<h1 class="text-center text-primary" >Listado de Turnos</h1>
+ <div="container">
+  <table class="table table-hover" id="turnos">
+  </table> 
+ </div>
+ <script>
+  $(document).ready(function(){
+          $.ajaxSetup({
+            cache: false,
+            username: '{{ current_user.getToken() }}',
+            password: 'x',
+            error: function (request, status, error) {
+            window.location = '/logout';
+            }
+          });
+          setInterval(function(){
+            var texto = "";
+            $.getJSON($SCRIPT_ROOT + '/_all_turn/'+ {{ current_user.get_id() }}, function(datos){
+              $.each(datos.settings, function(i, settings){
+                console.log(settings.column_turn)
+                texto += "<thead><tr>";
+                texto += "<th onclick='rid()' class='text-center' id='rid' >" + settings.column_turn + "</th>";
+                texto += "<th onclick='rcn()' class='text-center' id='rcn' >" + settings.column_custname + "</th>";
+                texto += "<th onclick='rrt()' class='text-center' id='rrt' >" + settings.column_type + "</th>";
+                texto += "</tr></thead>";
+              });
+              $.each(datos.allTurn, function(i, allTurn){
+                texto += "<tr>";
+                if(allTurn.status){
+                  texto += "<td  class='info text-center' style='font-size: 200%;'>" + allTurn.number + "</td>";
+                  texto += "<td  class='info text-center' style='font-size: 200%;'>" + allTurn.cust_name + "</td>";
+                  texto += "<td  class='info text-center' style='font-size: 200%;'>" + allTurn.request_type + "</td>";
+                }
+                else{
+                  texto += "<td class='text-center' >" + allTurn.number + "</td>";
+                  texto += "<td class='text-center' >" + allTurn.cust_name + "</td>";
+                  texto += "<td class='text-center'' >" + allTurn.request_type + "</td>";
+                }
+                texto += "</tr>";
+              });
+              $("#turnos").html(texto);
+            });
+          }, 5000);
+      });
+ </script>
+ <script>  
+  function cleanFirst(){
+    $.ajaxSetup({
+        cache: false,
+        username: '{{ current_user.getToken() }}',
+        password: 'x',
+        error: function (request, status, error) {
+        window.location = '/logout';
+        }
+      });
+    var texto = "";
+    $.getJSON($SCRIPT_ROOT + '/_all_turn/' + {{ current_user.get_id() }}, function(datos){
+      $.each(datos.allTurn, function(i, allTurn){
+        if(allTurn.status == 1){
+          $.ajax({
+            url: $SCRIPT_ROOT + '/_update_status/' + allTurn.number + '/' + allTurn.user_id,
+            type: 'PUT',
+            success: function(response) {
+              console.log('puto el que lee')
+            }
+          });
+          $.ajax({
+            url: $SCRIPT_ROOT + '/_update_status/' + (allTurn.number + 1) + '/' + allTurn.user_id,
+            type: 'PUT',
+            success: function(response) {
+              console.log('puto el que lee')
+            }
+          });
+        }          
+      });
+    });
+  }
+
+  function cleanall(){
+    $.ajaxSetup({
+        cache: false,
+        username: '{{ current_user.getToken() }}',
+        password: 'x',
+        error: function (request, status, error) {
+        window.location = '/logout';
+        }
+      });
+      $.ajax({
+        url: $SCRIPT_ROOT + '/_clean_all/' + {{ current_user.get_id() }},
+        type: 'PUT',
+        success: function(response) {
+          console.log('puto el que lee')
+        }
+      });
+  }
+
+ </script>
+
+<br>
+<script>
+  function rid(){
+    $.ajaxSetup({
+        cache: false,
+        username: '{{ current_user.getToken() }}',
+        password: 'x',
+        error: function (request, status, error) {
+        window.location = '/logout';
+        }
+      });
+    var person = prompt("Ingrese Nombre de Columna", "");
+    
+    if (person != null) {
+        //document.getElementById("myButton1").value="Close Curtain";
+        document.getElementById("rid").innerHTML = person;
+        $.ajax({
+            url: $SCRIPT_ROOT + '/_change_settings/' + {{ current_user.get_id() }} + '/column_turn/' + person,
+            type: 'PUT',
+            success: function(response) {
+              console.log('puto el que lee')
+            }
+          });
+    }
+  }
+
+  function rcn(){
+    $.ajaxSetup({
+        cache: false,
+        username: '{{ current_user.getToken() }}',
+        password: 'x',
+        error: function (request, status, error) {
+        window.location = '/logout';
+        }
+      });
+    var person = prompt("Ingrese Nombre de Columna", "");
+    
+    if (person != null) {
+        //document.getElementById("myButton1").value="Close Curtain";
+        document.getElementById("rcn").innerHTML = person;
+        $.ajax({
+            url: $SCRIPT_ROOT + '/_change_settings/' + {{ current_user.get_id() }} + '/column_custname/' + person,
+            type: 'PUT',
+            success: function(response) {
+              console.log('puto el que lee')
+            }
+          });
+    }
+  }
+
+  function rrt(){
+    $.ajaxSetup({
+        cache: false,
+        username: '{{ current_user.getToken() }}',
+        password: 'x',
+        error: function (request, status, error) {
+        window.location = '/logout';
+        }
+      });
+    var person = prompt("Ingrese Nombre de Columna", "");
+    
+    if (person != null) {
+        //document.getElementById("myButton1").value="Close Curtain";
+        document.getElementById("rrt").innerHTML = person;
+        $.ajax({
+            url: $SCRIPT_ROOT + '/_change_settings/' + {{ current_user.get_id() }} + '/column_type/' + person,
+            type: 'PUT',
+            success: function(response) {
+              console.log('puto el que lee')
+            }
+          });
+    }
+  }
+</script>
+
+</body>
+</html>

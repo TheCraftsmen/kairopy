@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<h1 class="text-center text-primary">Formulario de Registro</h1>
+<br><br><br>
+<div class="container">
+    <div class="row">
+        <div class="container col-md-6 col-md-offset-3" style="background-color: #eee">
+        <form action="" method="post" onsubmit="return validateForm();" id="formlogup">
+          {{ form.csrf_token }}
+          <fieldset class="form-group" >
+            <br>
+            {{ form.username(size=50, placeholder="usuario", class="form-control input-lg", required="required") }}
+            {{ form.password(size=50, placeholder="contraseña", class="form-control input-lg", required="required") }}
+            {{ form.repeatpassword(size=50, placeholder="repetir contraseña", class="form-control input-lg", required="required") }}
+            {{ form.email(size=50, placeholder="email", class="form-control input-lg", required="required", id="email") }}<br>
+            <input type="submit" class="btn btn-primary btn-lg btn-block" value="Enviar">
+          </fieldset >
+        </form>
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+    function validateForm() {
+    var x = document.forms["formlogup"]["email"].value;
+    var atpos = x.indexOf("@");
+    var dotpos = x.lastIndexOf(".");
+    if (atpos<1 || dotpos<atpos+2 || dotpos+2>=x.length) {
+        alert("email invalido");
+        document.getElementById("email").focus();
+        return false;
+    }
+    }
+</script>
+
+{% endblock %}
