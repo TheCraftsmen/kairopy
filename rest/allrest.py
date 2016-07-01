@@ -1,7 +1,7 @@
 from flask import jsonify
 from flask_restful import Resource
 from models import *
-from app import auth
+from app import auth, current_user
 import datetime
 import sys
 
