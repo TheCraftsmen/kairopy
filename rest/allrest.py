@@ -12,7 +12,7 @@ class AllTurn(Resource):
     def get(self,user_id):
         if int(current_user.get_id()) != int(user_id): return
         listOfTurn = list()
-        turnQuery = RequestList.query.filter(RequestList.status.in_((0, 1))).filter_by(user_id=user_id)
+        turnQuery = RequestList.query.filter(RequestList.status.in_((0, 1))).filter_by(user_id=user_id).limit(10)
         if turnQuery:
             for row in turnQuery:
                 dictOfTurn = dict(

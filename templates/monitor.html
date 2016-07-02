@@ -22,6 +22,7 @@
       <li ><a href="/">Principal</a></li>
       <li class="active"><a href="/monitor">Monitor</a></li>
       <li><a href="/request">Formulario</a></li>
+      <li><a href="/tutorial">Acerca De</a></li>
       <li><a href="#"></a></li>
       <li><a href="#"></a></li>
       <li><a href="#"></a></li>
@@ -36,6 +37,44 @@
   <table class="table table-hover" id="turnos">
   </table> 
  </div>
+ <script type="text/javascript">
+  $(document).ready(function(){
+          $.ajaxSetup({
+            cache: false,
+            username: '{{ current_user.getToken() }}',
+            password: 'x',
+            error: function (request, status, error) {
+            window.location = '/logout';
+            }
+          });
+          var texto = "";
+          $.getJSON($SCRIPT_ROOT + '/_all_turn/'+ {{ current_user.get_id() }}, function(datos){
+            $.each(datos.settings, function(i, settings){
+              console.log(settings.column_turn)
+              texto += "<thead><tr>";
+              texto += "<th onclick='rid()' class='text-center' id='rid' >" + settings.column_turn + "</th>";
+              texto += "<th onclick='rcn()' class='text-center' id='rcn' >" + settings.column_custname + "</th>";
+              texto += "<th onclick='rrt()' class='text-center' id='rrt' >" + settings.column_type + "</th>";
+              texto += "</tr></thead>";
+            });
+            $.each(datos.allTurn, function(i, allTurn){
+              texto += "<tr>";
+              if(allTurn.status){
+                texto += "<td  class='info text-center' style='font-size: 200%;'>" + allTurn.number + "</td>";
+                texto += "<td  class='info text-center' style='font-size: 200%;'>" + allTurn.cust_name + "</td>";
+                texto += "<td  class='info text-center' style='font-size: 200%;'>" + allTurn.request_type + "</td>";
+              }
+              else{
+                texto += "<td class='text-center' >" + allTurn.number + "</td>";
+                texto += "<td class='text-center' >" + allTurn.cust_name + "</td>";
+                texto += "<td class='text-center'' >" + allTurn.request_type + "</td>";
+              }
+              texto += "</tr>";
+            });
+            $("#turnos").html(texto);
+          });
+      });
+ </script>
  <script>
   $(document).ready(function(){
           $.ajaxSetup({
