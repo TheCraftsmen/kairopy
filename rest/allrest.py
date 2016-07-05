@@ -1,14 +1,14 @@
 from flask import jsonify
 from flask_restful import Resource
 from models import *
-from app import auth, current_user
+from app import current_user, login_required
 import datetime
 import sys
 
 class AllTurn(Resource):
 
 
-    @auth.login_required
+    @login_required
     def get(self,user_id):
         if int(current_user.get_id()) != int(user_id): return
         listOfTurn = list()
@@ -36,7 +36,7 @@ class AllTurn(Resource):
 
 class CleanAll(Resource):
 
-    @auth.login_required
+    @login_required
     def put(self,user_id):
         if int(current_user.get_id()) != int(user_id): return
         turnQuery = RequestList.query.filter_by(user_id=user_id)
@@ -52,7 +52,7 @@ class CleanAll(Resource):
 class ChangeSettings(Resource):
 
 
-    @auth.login_required
+    @login_required
     def put(self, user_id, column_name, new_value):
         if int(current_user.get_id()) != int(user_id): return
         us = UserSettings.query.filter_by(user_id=user_id).first()
@@ -66,7 +66,7 @@ class ChangeSettings(Resource):
 class UpdateStatus(Resource):
     
 
-    @auth.login_required
+    @login_required
     def put(self, api_num, user):
         if int(current_user.get_id()) != int(user): return
         updateTurn = RequestList.query.filter_by(user_id=user).filter(RequestList.request_date >=datetime.date.today()).filter_by(number=api_num).limit(1)

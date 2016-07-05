@@ -6,7 +6,6 @@ from flask.ext.httpauth import HTTPBasicAuth
 from flask_mail import Mail, Message
 from flask_restful import Resource, Api
 from flask.ext.login import LoginManager, login_user, login_required, logout_user, current_user
-
 from flask.ext.admin import Admin, AdminIndexView, expose
 from flask.ext.admin.contrib.sqla import ModelView
 
@@ -58,24 +57,19 @@ admin.add_view(ModelView(User, db.session))
 admin.add_view(ModelView(RequestList, db.session))
 admin.add_view(ModelView(UserSettings, db.session))
 
+
 @auth.verify_password
 def verify_password(username_or_token, password):
-    # first try to authenticate by token
+    #solamente el user response
     user = User.verify_auth_token(username_or_token)
     if not user:
-        # try to authenticate with username/password
-        user = User.query.filter_by(username=username_or_token).first()
-        if not user or not user.verify_password(password):
-            return False
-    g.user = user
+        return False
     return True
 
 @login_manager.user_loader
 def load_user(user_id):
     return User.query.filter(User.id == int(user_id)).first()
 
-'''
-'''
 from rest.allrest import AllTurn, UpdateStatus, ChangeSettings, CleanAll
 api.add_resource(AllTurn, '/_all_turn/<int:user_id>')
 api.add_resource(CleanAll, '/_clean_all/<int:user_id>')
@@ -131,7 +125,6 @@ def tutorial():
 def logup():
     error = None
     form = LogupForm()
-
     if request.method == 'POST' and form.validate_on_submit():
         usertest = User.query.filter_by(email=form.email.data).first()
         if usertest: return render_template('logup.html', form=form, error=error)
@@ -144,7 +137,6 @@ def logup():
             user = User.query.filter_by(email=form.email.data).first()
             db.session.add(UserSettings(user.id))
             db.session.commit()
-
             token = user.generate_auth_token(600)
             user.setToken(token)
             db.session.commit()
@@ -168,7 +160,6 @@ def reset():
             user = User.query.filter_by(username=form.username.data).first()
             if user:
                 token = user.generate_auth_token(600)
-                print token
                 user.setToken(token)
                 db.session.commit()
                 msg = Message("Recuperacion de Credenciales",
@@ -208,15 +199,6 @@ def validateemail(user_id, token):
     else:
         return "Acceso Denegado"
 
-
-@app.route('/api/token')
-@auth.login_required
-def get_auth_token():
-    token = g.user.generate_auth_token(600)
-    g.user.setToken(token)
-    return jsonify({'token': token.decode('ascii'), 'duration': 600})
-
-
 @app.route('/')
 @login_required
 def index():
@@ -240,10 +222,6 @@ def login():
         user = User.query.filter_by(username=form.username.data).first()
         if user and pwd_context.verify(form.password.data, user.password) and user.validate:
             login_user(user)
-            token = current_user.generate_auth_token(600000)
-            print token
-            current_user.setToken(token)
-            db.session.commit()
             return redirect(url_for('index'))
         else:
             error = 'Invalid credentials. Please try again.'
