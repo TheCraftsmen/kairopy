@@ -73,7 +73,7 @@ def load_user(user_id):
 from rest.allrest import AllTurn, UpdateStatus, ChangeSettings, CleanAll
 api.add_resource(AllTurn, '/_all_turn/<int:user_id>')
 api.add_resource(CleanAll, '/_clean_all/<int:user_id>')
-api.add_resource(UpdateStatus, '/_update_status/<int:api_num>/<int:user>')
+api.add_resource(UpdateStatus, '/_update_status/<int:table_id>/<int:user>')
 api.add_resource(ChangeSettings, '/_change_settings/<int:user_id>/<string:column_name>/<string:new_value>')
 
 @app.route('/request', methods=['GET', 'POST'])
@@ -90,19 +90,14 @@ def request_view():
         lastNumber = row.number
         lastStatus = row.status
     pNumber = 1
-    pStatus = 1
     if lastDate == datetime.date.today():
         pNumber = lastNumber + 1
-        if lastStatus and lastStatus == 2:
-            pStatus = 1
-        else:
-            pStatus = 0
     if request.method == 'POST':
         if request.form['cust_name']:
             rl = RequestList(
             custname=request.form['cust_name'].upper(),
             request_type=request.form['request_type'].upper(),
-            status=pStatus,
+            status=0,
             number=pNumber,
             user_id=current_user.get_id())
             db.session.add(rl)

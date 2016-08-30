@@ -33,7 +33,6 @@ class AllTurn(Resource):
             listOfSettings.append(dictOfSettings)
         return jsonify({'allTurn': listOfTurn, 'settings': listOfSettings})
 
-
 class CleanAll(Resource):
 
     @login_required
@@ -65,12 +64,13 @@ class ChangeSettings(Resource):
 
 class UpdateStatus(Resource):
     
-
     @login_required
-    def put(self, api_num, user):
+    def put(self, table_id, user):
+        print(user)
         if int(current_user.get_id()) != int(user): return
-        updateTurn = RequestList.query.filter_by(user_id=user).filter(RequestList.request_date >=datetime.date.today()).filter_by(number=api_num).limit(1)
+        updateTurn = RequestList.query.filter_by(table_id=int(table_id)).limit(1)
+        print(updateTurn)
         for row in updateTurn:
-            row.status += 1
+            row.status = 2
         db.session.commit()
-        return {'api_num': api_num}
+        return {'api_num': table_id}

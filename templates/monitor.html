@@ -27,7 +27,6 @@
       <li><a href="#"></a></li>
       <li><a href="#"></a></li>
       <li><a href="#"></a></li>
-      <li><a onclick="cleanFirst()" >Siguiente</a></li>
       <li><a onclick="cleanall()" >Borrar Todo</a></li>
     </ul>
   </div>
@@ -51,7 +50,7 @@
                 texto += "</tr></thead>";
               });
               $.each(datos.allTurn, function(i, allTurn){
-                texto += "<tr>";
+                texto += "<tr onclick='updateRow(" + allTurn.table_id + "," + allTurn.user_id + ")' >";
                 if(allTurn.status){
                   texto += "<td  class='info text-center' style='font-size: 200%;'>" + allTurn.number + "</td>";
                   texto += "<td  class='info text-center' style='font-size: 200%;'>" + allTurn.cust_name + "</td>";
@@ -69,28 +68,17 @@
           }, 1000);
       });
  </script>
- <script>  
-  function cleanFirst(){
-    var texto = "";
-    $.getJSON($SCRIPT_ROOT + '/_all_turn/' + {{ current_user.get_id() }}, function(datos){
-      $.each(datos.allTurn, function(i, allTurn){
-        if(allTurn.status == 1){
-          $.ajax({
-            url: $SCRIPT_ROOT + '/_update_status/' + allTurn.number + '/' + allTurn.user_id,
-            type: 'PUT',
-            success: function(response) {
-              console.log('puto el que lee')
-            }
-          });
-          $.ajax({
-            url: $SCRIPT_ROOT + '/_update_status/' + (allTurn.number + 1) + '/' + allTurn.user_id,
-            type: 'PUT',
-            success: function(response) {
-              console.log('puto el que lee')
-            }
-          });
-        }          
-      });
+ <script>
+ function updateRow(value, user){
+    console.log(value)
+    var rute = '/_update_status/' + value.toString() + '/' + user
+    console.log(rute)
+    $.ajax({
+      url: $SCRIPT_ROOT + '/_update_status/' + value.toString() + '/' + user,
+      type: 'PUT',
+      success: function(response) {
+        console.log('puto el que lee')
+      }
     });
   }
 
