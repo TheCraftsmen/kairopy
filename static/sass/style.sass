@@ -1,0 +1,161 @@
+@import "reset"
+@import 'https://fonts.googleapis.com/css?family=Roboto:300,300i,400,700'
+@import 'ionicons'
+
+$primary-color: #009688
+$icon-color: #f1f1f1
+$green-background: #00796B
+$grey-background: #f1f1f1
+$light-background: #B2DFDB
+
+body
+    background: $icon-color
+header
+    height: 80px
+    width: 100%
+    background: black
+    color: $primary-color
+    a
+        text-decoration: none
+        color: $primary-color   
+        transition: 1s
+        &:hover
+            color: #B2DFDB
+    font-size: 30px
+    padding-top: 10px
+    .left-nav
+        float: left
+    .right-nav
+        float: right
+    li
+        font-family: 'Roboto', cursive
+        display: inline-block
+        margin: 15px
+        .text
+            color: #009688
+            font-weight: 400 
+            border: none
+            font-size: 16px
+            position: relative
+            top: -4px
+            background: black
+            border-bottom: 2px solid #009688
+            &:focus
+                outline: none
+        .submit
+            background: #009688
+            border: none
+            padding: 12px
+            text-transform: uppercase
+            position: relative
+            top: -9px
+            font-size: 12px
+            &:focus
+                outline: none
+
+section
+    background: $icon-color
+    height: 600px
+    margin: 6px 100px
+    form
+        width: 60%
+        margin: 11px auto
+        background: white
+        font-family: 'Roboto', cursive
+        box-shadow: 0px 1px 8px 1px
+        input, .text
+            border: none
+            width: 100%
+            height: 53px
+            &:focus
+                outline: none
+        h3
+            text-align: center
+            font-size: 61px
+            text-transform: uppercase
+            font-weight: 700
+            background: black
+            padding: 13px
+        .text, h3
+            color: #009688
+        .text
+            background: black
+            font-weight: 400 
+            font-size: 60px
+            border-bottom: 4px solid #009688
+        .submit
+            font-weight: 400
+            font-size: 45px
+            background: black
+            color: #009688
+            border: none
+            text-transform: uppercase
+            cursor: pointer
+            transition: 1s
+            &:hover
+                background: #009688
+                color: black
+            &:focus
+                outline: none
+    ul
+        margin: 0 auto
+        li
+            width: 47%
+        .tutorial
+            width: 100%
+        li, .tutorial
+            display: inline-block
+            margin: 10px
+            article
+                width: 100%
+                margin: 0 auto
+                font-family: "Roboto"
+                text-transform: capitalize
+                font-size: 20px
+                background: white
+                box-shadow: 0px 1px 8px 1px
+                height: 250px
+                h3
+                    background: black
+                    color: $primary-color
+                    padding: 20px
+                    text-align: center
+                    text-transform: uppercase
+                p
+                    font-size: 190px
+                    text-align: center
+    table
+        width: 80%
+        margin: 0 auto
+        font-family: "Roboto"
+        text-transform: capitalize
+        font-size: 20px
+        padding: 0px 46px
+        background: white
+        box-shadow: 0px 1px 8px 1px
+        .small-table
+            padding: 10px
+        .black-green
+            background: black
+            color: $primary-color
+        th, td
+            padding: 20px
+        .tb-head
+            border-bottom: 2px solid black
+            font-weight: 700
+            text-align: center
+        .tb-text
+            cursor: pointer
+            text-align: center
+            font-weight: 400
+            transition: 2s ease
+            &:hover
+                background: black
+                color: $primary-color
+        i
+            display: inline-block
+            font-size: 20px
+            color: $primary-color
+            transition: 0.5s
+            &:hover
+                font-size: 25px

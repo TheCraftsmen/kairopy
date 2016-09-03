@@ -2,25 +2,29 @@
 
 {% block content %}
 
-<h1 class="text-center text-primary">Formulario de Registro</h1>
-<br><br><br>
-<div class="container">
-    <div class="row">
-        <div class="container col-md-6 col-md-offset-3" style="background-color: #eee">
-        <form action="" method="post" onsubmit="return validateForm();" id="formlogup">
-          {{ form.csrf_token }}
-          <fieldset class="form-group" >
-            <br>
-            {{ form.username(size=50, placeholder="usuario", class="form-control input-lg", required="required") }}
-            {{ form.password(size=50, placeholder="contraseña", class="form-control input-lg", required="required") }}
-            {{ form.repeatpassword(size=50, placeholder="repetir contraseña", class="form-control input-lg", required="required") }}
-            {{ form.email(size=50, placeholder="email", class="form-control input-lg", required="required", id="email") }}<br>
-            <input type="submit" class="btn btn-primary btn-lg btn-block" value="Enviar">
-          </fieldset >
-        </form>
-        </div>
-    </div>
-</div>
+
+<header>
+    <nav>
+        <ul class="left-nav">
+            <li>
+                <h4>Kairopy</h4>
+            </li>
+        </ul>
+    </nav>
+</header>
+
+<section>
+    <form action="" method="post" onsubmit="return validateForm();" id="formlogup">
+        <h3 class="text-center text-primary">Formulario de Registro</h3>
+        {{ form.csrf_token }}
+        {{ form.username(size=50, placeholder="usuario", class="text", required="required") }}
+        {{ form.password(size=50, placeholder="contraseña", class="text", required="required") }}
+        {{ form.repeatpassword(size=50, placeholder="repetir contraseña", class="text", required="required") }}
+        {{ form.email(size=50, placeholder="email", class="text", required="required", id="email") }}
+        <input type="submit" class="submit" value="Enviar">
+    </form>
+</section>
+
 <script type="text/javascript">
     function validateForm() {
     var x = document.forms["formlogup"]["email"].value;

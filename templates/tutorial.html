@@ -2,29 +2,82 @@
 
 {% block content %}
 
-<div class="container">
-  <h1 class='text-center text-primary'>Tutorial Kairopy</h2>
-  
-  <div class="well"><h2 class='text-center'>Que es Kairopy?</h2></div>
-  
-  <div class="well well-lg">
-    <h4>Kairopy es un sistema de turnos pensado para locales con alta demanda de clientes.</h4><h4>El sistema organiza por turnos a los clientes. Los turnos se cargan a traves de un practico formulario y se muestran en tiempo real sobre una vista monitor. Ademas permite obtener estadisticas a partir de los datos recolectados.</h4>
-  </div>
+<header>
+  <nav>
+    <ul class="left-nav">
+      <li>
+        <a href="/logout">
+          <i class="ion-power">
+          </i>
+        </a>
+      </li>
+      <li>
+        <a href="/">
+          <i class="ion-stats-bars">
+          </i>
+        </a>
+      </li>
+      <li>
+        <a href="/monitor">
+          <i class="ion-grid">
+          </i>
+        </a>
+      </li>
+      <li>
+        <a href="/request">
+          <i class="ion-plus-round">
+          </i>
+        </a>
+      </li>
+    </ul>
+    <ul class="right-nav">
+      <li>
+        <a href="/tutorial">
+          <i class="ion-help">
+          </i>
+        </a>
+      </li>
+    </ul>
+  </nav>
+</header>
+<section>
+  <ul>
+    <li class="tutorial">
+      <article>
+        <h3>Kairopy es un sistema de turnos pensado para locales con alta demanda de clientes.</h3>
+        <h4>El sistema organiza por turnos a los clientes. Los turnos se cargan a traves de un practico formulario y se muestran en tiempo real sobre una vista monitor. Ademas permite obtener estadisticas a partir de los datos recolectados.</h4>
+        
+      </article>
+      
+    </li>
+  </ul>
+  <ul>
+    <li class="tutorial">
+      <article>
+        <h3>Vista Principal</h3>
+        <h4>La pantalla principal muestra datos estadisticos sobre las cantidades procesadas, pendientes, totales diarias y el historico global de turnos</h4>
+      </article>
+      
+    </li>
+    <li class="tutorial">
+      <article>
+        <h3>Vista Monitor</h3>
+        <h4>La vista Monitor muestra en tiempo real el estado de los 10 primeros turnos. Por defecto las columnas son: "Posicion" (del dia), "Nombre" y "Descripcion". Con la opcion "Siguiente", de la barra de herramientas, el Primer turno pasa a desaparecer de la pantalla y la prioridad la toma el segundo en la lista. El primer turno de la lista siempre se pinta de azul para indicar la prioridad. Con la opcion "Borrar Todo" se pasan al estado procesado todos los turnos de la lista. Haciendo click sobre los nombre de las columnas se puede modificar por el nombre que el usuario requiera.</h4>
+      </article>
+    </li>
+    <li class="tutorial">
+      <article>
+        <h3>Vista Pedido de Turno</h3>
+        <h4>El Formulario es la interfaz de carga por la cual los clientes reservan su turnos. En el campo nombre el usuario carga su nombre y en el campos descripcion, su necesidad. Los dos campos son necesarios por el sistema</h4>
+      </article>
+    </li>
+  </ul>
 
-  <div class="well"><h2 class='text-center'>Vistas Kairopy</h2></div>
+</section>
   
-  <div class="well well-lg">
-    <h2>Principal</h2>
-    <p>La pantalla principal muestra datos estadisticos sobre las cantidades procesadas, pendientes, totales diarias y el historico global de turnos</p>
-  </div>
-  <div class="well well-lg">
-    <h2>Monitor</h2>
-    <p>La vista Monitor muestra en tiempo real el estado de los 10 primeros turnos. Por defecto las columnas son: "Posicion" (del dia), "Nombre" y "Descripcion". Con la opcion "Siguiente", de la barra de herramientas, el Primer turno pasa a desaparecer de la pantalla y la prioridad la toma el segundo en la lista. El primer turno de la lista siempre se pinta de azul para indicar la prioridad. Con la opcion "Borrar Todo" se pasan al estado procesado todos los turnos de la lista. Haciendo click sobre los nombre de las columnas se puede modificar por el nombre que el usuario requiera.</p>
-  </div>
-  <div class="well well-lg">
-    <h2>Formulario</h2>
-    <p>El Formulario es la interfaz de carga por la cual los clientes reservan su turnos. En el campo nombre el usuario carga su nombre y en el campos descripcion, su necesidad. Los dos campos son necesarios por el sistema</p>
-  </div>
-</div>
+
+  
+
+  
 
 {% endblock %}

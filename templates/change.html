@@ -2,27 +2,25 @@
 
 {% block content %}
 
-<h1 class="text-center text-primary">Cambiar Contraseña</h1>
-<br>
-<div class="container">
-  <div class="row">
-   <div class="col-sm-8 col-sm-offset-3 text">
-    <form role="form" action="" method="post">
-    <fieldset class='form-group'>
-    <label for="user_id"></label>
-    <input type="hidden" value={{ user_id }} name="user_id" id="user_id" placeholder="Nombre" size='50'>
-    
-    <label for="password"></label>
-    <input type="text" name="password" id="password" placeholder="Descripcion" size='50' required="required">
+<header>
+    <nav>
+        <ul class="left-nav">
+            <li>
+                <h4>Kairopy</h4>
+            </li>
+        </ul>
+    </nav>
+</header>
 
-    <label for="repeatpassword"></label>
-    <input type="text" name="repeatpassword" id="repeatpassword" placeholder="Descripcion" size='50' required="required">
-    
-    <input type="submit" class="btn btn-primary black-background white" value="Enviar">
-    </fieldset>
-    </form>
-</div>
-</div>
-</div>
+<section>
+    <h3 class="text-center text-primary">Cambiar Contraseña</h3>
+    <form role="form" action="" method="post">
+        <input type="hidden" value={{ user_id }} name="user_id" id="user_id" placeholder="Nombre" size='50'>
+        <input type="text" name="password" id="password" placeholder="Descripcion" size='50' required="required">
+        <input type="text" name="repeatpassword" id="repeatpassword" placeholder="Descripcion" size='50' required="required">
+        <input type="submit" class="btn btn-primary black-background white" value="Enviar">
+    </form>    
+</section>
+
 
 {% endblock %}

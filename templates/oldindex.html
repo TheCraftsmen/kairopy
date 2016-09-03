@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+{% block content %}
+
+<nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="#">Kairopy</a>
+    </div>
+    <ul class="nav navbar-nav">
+      <li><a href="/logout">Cerrar Session</a></li>
+      <li class="active"><a href="/">Principal</a></li>
+      <li><a href="/monitor">Monitor</a></li>
+      <li><a href="/request">Formulario</a></li>
+      <li><a href="/tutorial">Acerca De</a></li>
+    </ul>
+  </div>
+</nav>
+<h1 class='text-center text-primary' >Panel de Control</h1><br><br>
+<div class="container">
+  <div class="row">
+    {% for row in querydata %}
+            <div class="container col-md-6 well well-lg text-center" style="background-color: #eee">
+              <p style="font-size: 350%;">
+              {{ dictdata.get(row) }} 
+              </p>
+              <p style="font-size: 150%;">
+              {{ row }}
+              </p>
+            </div>
+          {% endfor %}
+
+  </div>
+</div>
+
+{% endblock %}

@@ -1,41 +1,49 @@
-<!DOCTYPE html>
-<html>
-<head>
-<title>Kairopy</title>
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-<link rel="stylesheet" href="{{ url_for('static', filename='assets/bootstrap/css/bootstrap.min.css') }}">
-<script type="text/javascript"
-  src="static/jquery-1.11.3.min.js">
-</script>
-<script type="text/javascript">
-  var $SCRIPT_ROOT = {{ request.script_root|tojson|safe }};
-</script>
-</head>
-<body>
-  <nav class="navbar navbar-default">
-  <div class="container-fluid">
-    <div class="navbar-header">
-      <a class="navbar-brand" href="#">Kairopy</a>
-    </div>
-    <ul class="nav navbar-nav">
-      <li><a href="/logout">Cerrar Session</a></li>
-      <li ><a href="/">Principal</a></li>
-      <li class="active"><a href="/monitor">Monitor</a></li>
-      <li><a href="/request">Formulario</a></li>
-      <li><a href="/tutorial">Acerca De</a></li>
-      <li><a href="#"></a></li>
-      <li><a href="#"></a></li>
-      <li><a href="#"></a></li>
-      <li><a href="#"></a></li>
-      <li><a onclick="cleanall()" >Borrar Todo</a></li>
+{% extends "base.html" %}
+{% block content %}
+
+<header>
+  <nav>
+    <ul class="left-nav">
+      <li>
+        <a href="/logout">
+          <i class="ion-power">
+          </i>
+        </a>
+      </li>
+      <li>
+        <a href="/">
+          <i class="ion-stats-bars">
+          </i>
+        </a>
+      </li>
+      <li>
+        <a href="/monitor">
+          <i class="ion-grid">
+          </i>
+        </a>
+      </li>
+      <li>
+        <a href="/request">
+          <i class="ion-plus-round">
+          </i>
+        </a>
+      </li>
     </ul>
-  </div>
-</nav>
-<h1 class="text-center text-primary" >Listado de Turnos</h1>
- <div="container">
-  <table class="table table-hover" id="turnos">
-  </table> 
- </div>
+    <ul class="right-nav">
+      <li>
+        <a href="/tutorial">
+          <i class="ion-help">
+          </i>
+        </a>
+      </li>
+    </ul>
+  </nav>
+</header>
+<section>
+  <table id="turnos">
+    
+  </table>
+</section>
  <script>
   $(document).ready(function(){
           setInterval(function(){
@@ -43,24 +51,19 @@
             $.getJSON($SCRIPT_ROOT + '/_all_turn/'+ {{ current_user.get_id() }}, function(datos){
               $.each(datos.settings, function(i, settings){
                 console.log(settings.column_turn)
-                texto += "<thead><tr>";
-                texto += "<th onclick='rid()' class='text-center' id='rid' >" + settings.column_turn + "</th>";
-                texto += "<th onclick='rcn()' class='text-center' id='rcn' >" + settings.column_custname + "</th>";
-                texto += "<th onclick='rrt()' class='text-center' id='rrt' >" + settings.column_type + "</th>";
-                texto += "</tr></thead>";
+                texto += "<tr class='tb-head'>";
+                texto += "<th onclick='rid()' class='black-green' id='rid' >" + settings.column_turn + "</th>";
+                texto += "<th onclick='rcn()' class='black-green' id='rcn' >" + settings.column_custname + "</th>";
+                texto += "<th onclick='rrt()' class='black-green' id='rrt' >" + settings.column_type + "</th>";
+                texto += "<th class='small-table black-green'>Finalizar</th>";
+                texto += "</tr>";
               });
               $.each(datos.allTurn, function(i, allTurn){
-                texto += "<tr onclick='updateRow(" + allTurn.table_id + "," + allTurn.user_id + ")' >";
-                if(allTurn.status){
-                  texto += "<td  class='info text-center' style='font-size: 200%;'>" + allTurn.number + "</td>";
-                  texto += "<td  class='info text-center' style='font-size: 200%;'>" + allTurn.cust_name + "</td>";
-                  texto += "<td  class='info text-center' style='font-size: 200%;'>" + allTurn.request_type + "</td>";
-                }
-                else{
-                  texto += "<td class='text-center' >" + allTurn.number + "</td>";
-                  texto += "<td class='text-center' >" + allTurn.cust_name + "</td>";
-                  texto += "<td class='text-center'' >" + allTurn.request_type + "</td>";
-                }
+                texto += "<tr class='tb-text' onclick='updateRow(" + allTurn.table_id + "," + allTurn.user_id + ")' >";
+                texto += "<td class='text-center' >" + allTurn.number + "</td>";
+                texto += "<td class='text-center' >" + allTurn.cust_name + "</td>";
+                texto += "<td class='text-center'' >" + allTurn.request_type + "</td>";
+                texto += "<td class='small-table'><i class='ion-android-close'></i></td>";
                 texto += "</tr>";
               });
               $("#turnos").html(texto);
@@ -94,7 +97,6 @@
 
  </script>
 
-<br>
 <script>
   function rid(){
     var person = prompt("Ingrese Nombre de Columna", "");
@@ -145,5 +147,4 @@
   }
 </script>
 
-</body>
-</html>
+{% endblock %}
