@@ -15,7 +15,7 @@
 
 <section>
     <form action="" method="post" onsubmit="return validateForm();" id="formlogup">
-        <h3 class="text-center text-primary">Formulario de Registro</h3>
+        <h3>Formulario de Registro</h3>
         {{ form.csrf_token }}
         {{ form.username(size=50, placeholder="usuario", class="text", required="required") }}
         {{ form.password(size=50, placeholder="contraseña", class="text", required="required") }}

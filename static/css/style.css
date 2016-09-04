@@ -3025,6 +3025,14 @@ header {
     transition: 1s; }
     header a:hover {
       color: #B2DFDB; }
+  header i {
+    transition: 1s; }
+    header i:hover {
+      color: #B2DFDB; }
+  header .submit {
+    transition: 1s; }
+    header .submit:hover {
+      background: #B2DFDB; }
   header .left-nav {
     float: left; }
   header .right-nav {

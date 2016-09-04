@@ -13,12 +13,12 @@
 </header>
 
 <section>
-    <h3 class="text-center text-primary">Cambiar Contraseña</h3>
     <form role="form" action="" method="post">
+        <h3>Cambiar Contraseña</h3>
         <input type="hidden" value={{ user_id }} name="user_id" id="user_id" placeholder="Nombre" size='50'>
-        <input type="text" name="password" id="password" placeholder="Descripcion" size='50' required="required">
-        <input type="text" name="repeatpassword" id="repeatpassword" placeholder="Descripcion" size='50' required="required">
-        <input type="submit" class="btn btn-primary black-background white" value="Enviar">
+        <input class="text" type="text" name="password" id="password" placeholder="Descripcion" size='50' required="required">
+        <input class="text" type="text" name="repeatpassword" id="repeatpassword" placeholder="Descripcion" size='50' required="required">
+        <input class="submit" type="submit" value="Enviar">
     </form>    
 </section>
 
