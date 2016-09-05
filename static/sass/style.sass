@@ -33,6 +33,9 @@ header
     padding-top: 10px
     .left-nav
         float: left
+        li .text-red
+            font-size: 22px
+            color: #B02C0C
     .right-nav
         float: right
     li
@@ -61,10 +64,55 @@ header
             &:focus
                 outline: none
 
+.monitor-section
+    background: $icon-color
+    height: 300px
+    margin: 0 auto
+    margin-top: 7px
+    width: 100%
+    .medium
+        float: left
+        width: 39%
+        margin-left: 10px
+    .large
+        float: left
+        width: 60%
+        margin-left: 24px
+    form
+        width: 58%
+        float: right
+        margin-right: 10px
+    .small
+        ul li 
+            width: 100%
+            margin: 0 auto
+            article
+                font-size: 30px
+                text-align: center
+                height: 300px
+                box-shadow: 0px 0px 0px 0px
+                p
+                    font-size: 160px
+                    padding-top: 35px
+        margin: 0 auto
+        float: right
+        width: 34%
+        height: 300px
+        margin-right: 24px
+
 section
     background: $icon-color
     height: 600px
-    margin: 6px 100px
+    margin: 0 auto
+    margin-top: 6px
+    width: 80%
+    article
+        width: 100%
+        background: black none repeat scroll 0% 0%
+        height: 80%
+        iframe
+            width: 100%
+            margin: 0 auto
     form
         width: 60%
         margin: 11px auto

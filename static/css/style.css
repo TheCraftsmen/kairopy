@@ -3035,6 +3035,9 @@ header {
       background: #B2DFDB; }
   header .left-nav {
     float: left; }
+    header .left-nav li .text-red {
+      font-size: 22px;
+      color: #B02C0C; }
   header .right-nav {
     float: right; }
   header li {
@@ -3063,10 +3066,55 @@ header {
       header li .submit:focus {
         outline: none; }
 
+.monitor-section {
+  background: #f1f1f1;
+  height: 300px;
+  margin: 0 auto;
+  margin-top: 7px;
+  width: 100%; }
+  .monitor-section .medium {
+    float: left;
+    width: 39%;
+    margin-left: 10px; }
+  .monitor-section .large {
+    float: left;
+    width: 60%;
+    margin-left: 24px; }
+  .monitor-section form {
+    width: 58%;
+    float: right;
+    margin-right: 10px; }
+  .monitor-section .small {
+    margin: 0 auto;
+    float: right;
+    width: 34%;
+    height: 300px;
+    margin-right: 24px; }
+    .monitor-section .small ul li {
+      width: 100%;
+      margin: 0 auto; }
+      .monitor-section .small ul li article {
+        font-size: 30px;
+        text-align: center;
+        height: 300px;
+        box-shadow: 0px 0px 0px 0px; }
+        .monitor-section .small ul li article p {
+          font-size: 160px;
+          padding-top: 35px; }
+
 section {
   background: #f1f1f1;
   height: 600px;
-  margin: 6px 100px; }
+  margin: 0 auto;
+  margin-top: 6px;
+  width: 80%; }
+  section article {
+    width: 100%;
+    background: black none repeat scroll 0% 0%;
+    height: 80%; }
+    section article iframe {
+      width: 100%;
+      margin: 0 auto; }
   section form {
     width: 60%;
     margin: 11px auto;

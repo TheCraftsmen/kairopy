@@ -8,6 +8,11 @@
             <li>
                 <h4>Kairopy</h4>
             </li>
+            <li>
+                {% if error %}
+                    <p class="text-red">{{ error }}</p>
+                {% endif %}
+            </li>
         </ul>
         <ul class="right-nav">
             <li>
@@ -33,6 +38,11 @@
             </li>
         </ul>
     </header>
+    <section>
+        <article>
+            <iframe width="853" height="480" src="https://www.youtube.com/embed/zqjLaOONheg" frameborder="0" allowfullscreen></iframe>
+        </article>
+    </section>
 </nav>
 
 {% endblock %}

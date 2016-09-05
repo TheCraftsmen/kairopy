@@ -28,6 +28,12 @@
           </i>
         </a>
       </li>
+      <li>
+        <a href="/user_offers">
+          <i class="ion-gear-b">
+          </i>
+        </a>
+      </li>
     </ul>
     <ul class="right-nav">
       <li>
@@ -39,11 +45,27 @@
     </ul>
   </nav>
 </header>
-<section>
-  <table id="turnos">
-    
+<section class="monitor-section">
+  <table class="large" id="turnos">
   </table>
+  <article class="small">
+    <ul class="bxslider">
+      {% for row in offers %}
+        <li>
+          <article>
+            <h3>{{ row.offer_name }}</h3>
+            <p>{{ row.offer_discount }}</p>
+          </article>
+        </li>
+      {% endfor %}
+    </ul>
+  </article>
 </section>
+<script type="text/javascript">
+  $(document).ready(function(){
+    $('.bxslider').bxSlider({auto:true});
+  });
+</script>
  <script>
   $(document).ready(function(){
           setInterval(function(){

@@ -29,13 +29,13 @@ mail = Mail(app)
 # initialization
 login_manager = LoginManager()
 login_manager.init_app(app)
-app.config.from_object('config.ProductionConfig')
+app.config.from_object('config.DevelopmentConfig')
 api = Api(app)
 # extensions
 db = SQLAlchemy(app)
 auth = HTTPBasicAuth()
 from models import *
-from forms import LoginForm, LogupForm, ResetForm
+from forms import *
 
 login_manager.login_view = "login"
 
@@ -108,7 +108,8 @@ def request_view():
 @app.route('/monitor')
 @login_required
 def monitor():
-    return render_template('monitor.html')
+    offers = UserOffer.getOffersforUser(current_user.get_id())
+    return render_template('monitor.html', offers=offers)
 
 
 @app.route('/tutorial')
@@ -210,7 +211,6 @@ def index():
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
-    print("entra")
     error = None
     form = LoginForm()
     if request.method == 'POST' and form.validate_on_submit():
@@ -219,7 +219,7 @@ def login():
             login_user(user)
             return redirect(url_for('index'))
         else:
-            error = 'Invalid credentials. Please try again.'
+            error = 'Credenciales Invalidas. Por Favor, Intente otra vez.'
     return render_template('login.html', error=error, form=form)
 
 @app.route('/logout')
@@ -227,6 +227,34 @@ def login():
 def logout():
     logout_user()
     return redirect(url_for('login'))
+
+@app.route('/user_offers', methods=['GET', 'POST', 'DELETE'])
+@login_required
+def user_offers():
+    error = None
+    form = OffersForm()
+    if request.method == 'POST' and form.validate_on_submit():
+        save_offers(form, current_user.get_id())
+    elif request.method == 'DELETE':
+        delete_offers(request.form['table_id'])
+    else:
+        error = 'Error en el Formulario'
+    offers = UserOffer.getOffersforUser(current_user.get_id())
+    return render_template('user_offers.html', error=error, form=form, offers=offers)
+
+def save_offers(form, user_id):
+    db.session.add(UserOffer(
+            user_id,
+            form.offer_name.data, 
+            form.offer_discount.data))
+    db.session.commit()
+
+def delete_offers(table_id):
+    o = UserOffer.query.filter_by(table_id=table_id).first()
+    if o:
+        db.session.delete(o)
+        db.session.commit()
+
 
 if __name__ == '__main__':
     app.run()

@@ -20,6 +20,7 @@ class User(db.Model):
     request_settings = relationship("UserSettings", backref="user")
     validate = db.Column(db.Boolean, default=False)
     role = db.Column(db.String(10), default='user')
+    user_offers = relationship("UserOffer", backref="user")
 
     def __init__(self, name, email, password):
         self.username = name
@@ -124,3 +125,22 @@ class UserSettings(db.Model):
 
     def __repr__(self):
         pass
+
+class UserOffer(db.Model):
+    """docstring for UserOffer"""
+
+    __tablename__ = "user_offers"
+
+    table_id = db.Column(db.Integer, primary_key=True)
+    offer_name = db.Column(db.String(20))
+    offer_discount = db.Column(db.String(20))
+    user_id = db.Column(db.Integer, ForeignKey('users.id'))
+
+    def __init__(self, user_id, offer_name, offer_discount):
+        self.user_id = user_id
+        self.offer_name = offer_name
+        self.offer_discount = offer_discount
+
+    @classmethod
+    def getOffersforUser(self, user_id):
+        return self.query.filter_by(user_id=user_id)

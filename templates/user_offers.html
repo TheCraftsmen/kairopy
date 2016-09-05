@@ -1,0 +1,88 @@
+{% extends "base.html" %}
+{% block content %}
+
+<header>
+  <nav>
+    <ul class="left-nav">
+      <li>
+        <a href="/logout">
+          <i class="ion-power">
+          </i>
+        </a>
+      </li>
+      <li>
+        <a href="/">
+          <i class="ion-stats-bars">
+          </i>
+        </a>
+      </li>
+      <li>
+        <a href="/monitor">
+          <i class="ion-grid">
+          </i>
+        </a>
+      </li>
+      <li>
+        <a href="/request">
+          <i class="ion-plus-round">
+          </i>
+        </a>
+      </li>
+      <li>
+        <a href="/user_offers">
+          <i class="ion-gear-b">
+          </i>
+        </a>
+      </li>
+    </ul>
+    <ul class="right-nav">
+      <li>
+        <a href="/tutorial">
+          <i class="ion-help">
+          </i>
+        </a>
+      </li>
+    </ul>
+  </nav>
+</header>
+<section class="monitor-section">
+  <table class="medium">
+    <tr class="tb-head">
+      <th class="black-green">oferta</th>
+      <th class="black-green">descuento</th>
+      <th class="small-table black-green">finalizar</th>
+    </tr >
+    {% for row in offers %}
+      <tr class="tb-text" onclick='updateRow("{{ row.table_id }}","{{ row.user_id }}")'>
+        <td class="text-center">{{ row.offer_name }}</td>
+        <td class="text-center">{{ row.offer_discount }}</td>
+        <td class="small-table"><i class="ion-android-close"></i></td>
+      </tr>
+    {% endfor %}
+  </table>
+  <form role="form" action="" method="post">
+      <h3>Nueva Oferta</h3>
+      {{ form.csrf_token }}
+      {{ form.offer_name(placeholder="oferta", class="text", required="required") }}
+      {{ form.offer_discount(placeholder="descuento", class="text", required="required") }}
+      <input class="submit" type="submit" name="enviar" value="Enviar">      
+  </form>
+</section>
+<footer>
+  
+</footer>
+<script type="text/javascript">
+  function updateRow(value, user){
+    console.log(value)
+    $.ajax({
+      url: $SCRIPT_ROOT + '/user_offers',
+      type: 'DELETE',
+      data : { table_id : value, user_id: user },
+      success: function(response) {
+        window.location.reload(true);
+      }
+    });
+  }
+</script>
+
+{% endblock %}

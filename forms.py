@@ -19,5 +19,12 @@ class LogupForm(Form):
     repeatpassword = PasswordField(u'REPETIR CONTRASEÑA', validators=[DataRequired()])
 
 class ResetForm(Form):
-    """Form class for user logup."""
+    """Form class for pass reset."""
     username = TextField('USUARIO', validators=[DataRequired()])
+
+class OffersForm(Form):
+    """Form class for OffersForm"""
+    offer_name = TextField('OFERTA', validators=[DataRequired()])
+    offer_discount = TextField('DESCUENTO', validators=[DataRequired()])
+    
+        

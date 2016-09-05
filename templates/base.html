@@ -10,6 +10,8 @@
     <script type="text/javascript">
       var $SCRIPT_ROOT = {{ request.script_root|tojson|safe }};
     </script>
+    <script type="text/javascript" src='static/bxslider/jquery.bxslider.js'></script>
+    <link rel="stylesheet" href="{{ url_for('static', filename='bxslider/jquery.bxslider.css') }}">
   </head>
   <body>
 
