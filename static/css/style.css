@@ -3035,12 +3035,19 @@ body {
       left: 8px; }
     .login-header .text {
       position: initial;
-      width: 100%;
+      width: 88%;
       z-index: 4;
       padding-left: 50px;
-      font-size: 29px; }
+      font-size: 29px; } }
+    @media screen and (max-width: 430px) and (max-width: 380px) {
+      .login-header .text {
+        width: 86%; } }
+    @media screen and (max-width: 430px) and (max-width: 330px) {
+      .login-header .text {
+        width: 84%; } }
+@media screen and (max-width: 430px) {
     .login-header form {
-      margin-top: 78px; }
+      margin-top: 5px; }
     .login-header a, .login-header .submit {
       width: 100%;
       display: block;
