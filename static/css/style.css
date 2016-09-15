@@ -3009,6 +3009,10 @@ table {
 .ion-xbox:before {
   content: ""; }
 
+input[type=submit] {
+  -webkit-border-radius: 0px;
+  -webkit-appearance: none; }
+
 body {
   background: #f1f1f1; }
 
