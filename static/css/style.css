@@ -3044,7 +3044,8 @@ body {
         width: 86%; } }
     @media screen and (max-width: 430px) and (max-width: 330px) {
       .login-header .text {
-        width: 84%; } }
+        width: 82%;
+        webkit-max-logical-width: 82%; } }
 @media screen and (max-width: 430px) {
     .login-header form {
       margin-top: 5px; }
