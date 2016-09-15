@@ -3184,7 +3184,9 @@ section {
       border: none;
       text-transform: uppercase;
       cursor: pointer;
-      transition: 1s; }
+      transition: 1s;
+      -webkit-appearance: none;
+      -webkit-border-radius: 0; }
       section form .submit:hover {
         background: #009688;
         color: black; }
