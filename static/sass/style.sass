@@ -10,6 +10,24 @@ $light-background: #B2DFDB
 
 body
     background: $icon-color
+
+.login-header
+    height: 600px
+    .left-nav, .right-nav
+        float: none
+    .text
+        width: 90%
+    form
+        margin-top: 78px
+    a, .submit
+        width: 100%
+        display: block
+        text-align: center
+    a
+        margin-top: 30px
+    .submit
+        margin-top: 169px
+
 header
     height: 80px
     width: 100%
@@ -66,7 +84,7 @@ header
 
 .monitor-section
     background: $icon-color
-    height: 300px
+    height: 900px
     margin: 0 auto
     margin-top: 7px
     width: 100%
@@ -100,12 +118,25 @@ header
         height: 300px
         margin-right: 24px
 
+.short-section
+    height: 600px
+    @media screen and (max-width:400px)
+        display: none
+
+
 section
     background: $icon-color
-    height: 600px
+    height: 1200px
     margin: 0 auto
     margin-top: 6px
     width: 80%
+    @media screen and (max-width:800px)
+        margin: 0 0
+        height: 870px
+        width: 100%
+    @media screen and (max-width:400px)
+        margin: 0 0
+        width: 100%
     article
         width: 100%
         background: black none repeat scroll 0% 0%
@@ -115,6 +146,8 @@ section
             margin: 0 auto
     form
         width: 60%
+        @media screen and (max-width:800px)
+            width: 95%
         margin: 11px auto
         background: white
         font-family: 'Roboto', cursive
@@ -155,13 +188,22 @@ section
                 outline: none
     ul
         margin: 0 auto
+        @media screen and (max-width:400px)
+            margin: 0 0
         li
             width: 47%
+            @media screen and (max-width:400px)
+                width: 100%
+                display: block
+                margin: 0 0
         .tutorial
             width: 100%
         li, .tutorial
             display: inline-block
             margin: 10px
+            @media screen and (max-width:400px)
+                display: block
+                margin: 0 0
             article
                 width: 100%
                 margin: 0 auto
@@ -180,6 +222,14 @@ section
                 p
                     font-size: 190px
                     text-align: center
+                    @media screen and (max-width:400px)
+                        font-size: 150px
+                @media screen and (max-width:400px)
+                    h4
+                        overflow: auto
+                        height: 181px
+                        text-transform: normal
+                        text-align: center
     table
         width: 80%
         margin: 0 auto
@@ -215,3 +265,71 @@ section
             transition: 0.5s
             &:hover
                 font-size: 25px
+
+.order
+    @media screen and (max-width:400px)
+        display: none
+    position: relative
+    width: 100%
+    height: 600px
+    background: url("../kairopyorganizacion.png")
+    background-size: cover
+    font-family: "Roboto"
+    h2 
+        padding-top: 30px
+        font-size: 40px
+        color: $primary-color
+        text-align: center
+    i
+        font-size: 30px
+        color: $primary-color
+        &:hover
+            color: #B2DFDB
+            cursor: pointer
+    
+    .grid-info, .plus-info, .gear-info
+        position: absolute
+        color: $primary-color
+        z-index: 1
+        &:hover
+            background: $grey-background
+            padding: 10px
+            border-radius: 10px
+            z-index: 4
+            box-shadow: 0px 1px 8px 1px
+        &:hover .principal-text
+            display: block
+        &:hover i
+            display: none
+        .principal-text
+            display: none
+            font-size: 20px
+            text-align: center
+            width: 500px
+        .short
+            width: 300px
+    .plus-info
+        left: 46%
+        top: 30%
+    .grid-info
+        top: 36%
+        left: 59%
+    .gear-info
+        top: 71%
+        left: 75%
+
+
+
+footer
+    width: 100%
+    margin: 0 auto
+    font-family: "Roboto"
+    font-size: 20px
+    background: black
+    height: 50px
+    h4
+        background: black
+        color: $primary-color
+        text-align: center
+        padding-top: 15px
+        text-transform: capitalize

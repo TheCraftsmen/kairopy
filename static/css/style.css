@@ -3012,6 +3012,23 @@ table {
 body {
   background: #f1f1f1; }
 
+.login-header {
+  height: 600px; }
+  .login-header .left-nav, .login-header .right-nav {
+    float: none; }
+  .login-header .text {
+    width: 90%; }
+  .login-header form {
+    margin-top: 78px; }
+  .login-header a, .login-header .submit {
+    width: 100%;
+    display: block;
+    text-align: center; }
+  .login-header a {
+    margin-top: 30px; }
+  .login-header .submit {
+    margin-top: 169px; }
+
 header {
   height: 80px;
   width: 100%;
@@ -3068,7 +3085,7 @@ header {
 
 .monitor-section {
   background: #f1f1f1;
-  height: 300px;
+  height: 900px;
   margin: 0 auto;
   margin-top: 7px;
   width: 100%; }
@@ -3102,12 +3119,27 @@ header {
           font-size: 160px;
           padding-top: 35px; }
 
+.short-section {
+  height: 600px; }
+  @media screen and (max-width: 400px) {
+    .short-section {
+      display: none; } }
+
 section {
   background: #f1f1f1;
-  height: 600px;
+  height: 1200px;
   margin: 0 auto;
   margin-top: 6px;
   width: 80%; }
+  @media screen and (max-width: 800px) {
+    section {
+      margin: 0 0;
+      height: 870px;
+      width: 100%; } }
+  @media screen and (max-width: 400px) {
+    section {
+      margin: 0 0;
+      width: 100%; } }
   section article {
     width: 100%;
     background: black none repeat scroll 0% 0%;
@@ -3121,6 +3153,9 @@ section {
     background: white;
     font-family: "Roboto", cursive;
     box-shadow: 0px 1px 8px 1px; }
+    @media screen and (max-width: 800px) {
+      section form {
+        width: 95%; } }
     section form input, section form .text {
       border: none;
       width: 100%;
@@ -3157,13 +3192,25 @@ section {
         outline: none; }
   section ul {
     margin: 0 auto; }
+    @media screen and (max-width: 400px) {
+      section ul {
+        margin: 0 0; } }
     section ul li {
       width: 47%; }
+      @media screen and (max-width: 400px) {
+        section ul li {
+          width: 100%;
+          display: block;
+          margin: 0 0; } }
     section ul .tutorial {
       width: 100%; }
     section ul li, section ul .tutorial {
       display: inline-block;
       margin: 10px; }
+      @media screen and (max-width: 400px) {
+        section ul li, section ul .tutorial {
+          display: block;
+          margin: 0 0; } }
       section ul li article, section ul .tutorial article {
         width: 100%;
         margin: 0 auto;
@@ -3182,6 +3229,15 @@ section {
         section ul li article p, section ul .tutorial article p {
           font-size: 190px;
           text-align: center; }
+          @media screen and (max-width: 400px) {
+            section ul li article p, section ul .tutorial article p {
+              font-size: 150px; } }
+        @media screen and (max-width: 400px) {
+          section ul li article h4, section ul .tutorial article h4 {
+            overflow: auto;
+            height: 181px;
+            text-transform: normal;
+            text-align: center; } }
   section table {
     width: 80%;
     margin: 0 auto;
@@ -3217,5 +3273,71 @@ section {
       transition: 0.5s; }
       section table i:hover {
         font-size: 25px; }
+
+.order {
+  position: relative;
+  width: 100%;
+  height: 600px;
+  background: url("../kairopyorganizacion.png");
+  background-size: cover;
+  font-family: "Roboto"; }
+  @media screen and (max-width: 400px) {
+    .order {
+      display: none; } }
+  .order h2 {
+    padding-top: 30px;
+    font-size: 40px;
+    color: #009688;
+    text-align: center; }
+  .order i {
+    font-size: 30px;
+    color: #009688; }
+    .order i:hover {
+      color: #B2DFDB;
+      cursor: pointer; }
+  .order .grid-info, .order .plus-info, .order .gear-info {
+    position: absolute;
+    color: #009688;
+    z-index: 1; }
+    .order .grid-info:hover, .order .plus-info:hover, .order .gear-info:hover {
+      background: #f1f1f1;
+      padding: 10px;
+      border-radius: 10px;
+      z-index: 4;
+      box-shadow: 0px 1px 8px 1px; }
+    .order .grid-info:hover .principal-text, .order .plus-info:hover .principal-text, .order .gear-info:hover .principal-text {
+      display: block; }
+    .order .grid-info:hover i, .order .plus-info:hover i, .order .gear-info:hover i {
+      display: none; }
+    .order .grid-info .principal-text, .order .plus-info .principal-text, .order .gear-info .principal-text {
+      display: none;
+      font-size: 20px;
+      text-align: center;
+      width: 500px; }
+    .order .grid-info .short, .order .plus-info .short, .order .gear-info .short {
+      width: 300px; }
+  .order .plus-info {
+    left: 46%;
+    top: 30%; }
+  .order .grid-info {
+    top: 36%;
+    left: 59%; }
+  .order .gear-info {
+    top: 71%;
+    left: 75%; }
+
+footer {
+  width: 100%;
+  margin: 0 auto;
+  font-family: "Roboto";
+  font-size: 20px;
+  background: black;
+  height: 50px; }
+  footer h4 {
+    background: black;
+    color: #009688;
+    text-align: center;
+    padding-top: 15px;
+    text-transform: capitalize; }
 
 /*# sourceMappingURL=style.css.map */

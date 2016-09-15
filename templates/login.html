@@ -3,7 +3,7 @@
 {% block content %}
 
 <nav>
-    <header>
+    <header class="login-header">
         <ul class="left-nav">
             <li>
                 <h4>Kairopy</h4>
@@ -38,11 +38,26 @@
             </li>
         </ul>
     </header>
-    <section>
-        <article>
-            <iframe width="560" height="515" src="https://www.youtube.com/embed/TJW95KFEfYU" frameborder="0" allowfullscreen></iframe>
-        </article>
-    </section>
 </nav>
+<section class="short-section">
+    <article>
+        <iframe width="560" height="515" src="https://www.youtube.com/embed/TJW95KFEfYU" frameborder="0" allowfullscreen></iframe>
+    </article>
+</section>
+<section class="order">
+    <h2>Ejemplo de Implentacion</h2>
+    <div class="plus-info">
+        <p class="principal-text">Una tablet en algun lugar del local, es el mejor dispostivo para que sus clientes se vallan registrando al entrar.</p>
+        <i class="ion-plus-round"></i>
+    </div>
+    <div class="grid-info">
+        <i class="ion-grid"></i>
+        <p class="principal-text">Es recomendable poner la vista monitor en un televisor para que el cliente tenga una mejor visual de su posicion en el listado de turnos y ademas pueda aprovechar a visualizar las ofertas del dia.</p>
+    </div>
+    <div class="gear-info">
+        <i class="ion-gear-b"></i>
+        <p class="principal-text short">el mostrador es el mejor lugar para ir actualizando la ofertas del dia en el local</p>
+    </div>
+</section>
 
 {% endblock %}
