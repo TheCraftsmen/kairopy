@@ -14,13 +14,29 @@ input[type=submit]
 
 body
     background: $icon-color
-@media screen and (max-width:400px)
+@media screen and (max-width: 430px)
     .login-header
-        height: 600px
+        height: 500px
         .left-nav, .right-nav
             float: none
+            li
+                width: 100%
+                margin: 0 0
+        .ion-person, .ion-key
+            position: relative
+            display: initial
+            top: 30px
+            z-index: 1
+        .ion-person
+            left: 3px
+        .ion-key
+            left: 8px
         .text
-            width: 90%
+            position: initial
+            width: 100%
+            z-index: 4
+            padding-left: 50px
+            font-size: 29px
         form
             margin-top: 78px
         a, .submit
@@ -30,7 +46,8 @@ body
         a
             margin-top: 30px
         .submit
-            margin-top: 169px
+            margin-top: 73px
+
 header
     height: 80px
     width: 100%
@@ -60,6 +77,8 @@ header
     .right-nav
         float: right
     li
+        @media screen and (max-width:430px)
+            margin: 0 0
         font-family: 'Roboto', cursive
         display: inline-block
         margin: 15px
@@ -123,7 +142,7 @@ header
 
 .short-section
     height: 600px
-    @media screen and (max-width:400px)
+    @media screen and (max-width:430px)
         display: none
 
 
@@ -137,7 +156,7 @@ section
         margin: 0 0
         height: 870px
         width: 100%
-    @media screen and (max-width:400px)
+    @media screen and (max-width:430px)
         margin: 0 0
         width: 100%
     article
@@ -193,11 +212,11 @@ section
                 outline: none
     ul
         margin: 0 auto
-        @media screen and (max-width:400px)
+        @media screen and (max-width:430px)
             margin: 0 0
         li
             width: 47%
-            @media screen and (max-width:400px)
+            @media screen and (max-width:430px)
                 width: 100%
                 display: block
                 margin: 0 0
@@ -206,7 +225,7 @@ section
         li, .tutorial
             display: inline-block
             margin: 10px
-            @media screen and (max-width:400px)
+            @media screen and (max-width:430px)
                 display: block
                 margin: 0 0
             article
@@ -227,9 +246,9 @@ section
                 p
                     font-size: 190px
                     text-align: center
-                    @media screen and (max-width:400px)
+                    @media screen and (max-width:430px)
                         font-size: 150px
-                @media screen and (max-width:400px)
+                @media screen and (max-width:430px)
                     h4
                         overflow: auto
                         height: 181px
@@ -272,7 +291,7 @@ section
                 font-size: 25px
 
 .order
-    @media screen and (max-width:400px)
+    @media screen and (max-width:430px)
         display: none
     position: relative
     width: 100%

@@ -3016,13 +3016,29 @@ input[type=submit] {
 body {
   background: #f1f1f1; }
 
-@media screen and (max-width: 400px) {
+@media screen and (max-width: 430px) {
   .login-header {
-    height: 600px; }
+    height: 500px; }
     .login-header .left-nav, .login-header .right-nav {
       float: none; }
+      .login-header .left-nav li, .login-header .right-nav li {
+        width: 100%;
+        margin: 0 0; }
+    .login-header .ion-person, .login-header .ion-key {
+      position: relative;
+      display: initial;
+      top: 30px;
+      z-index: 1; }
+    .login-header .ion-person {
+      left: 3px; }
+    .login-header .ion-key {
+      left: 8px; }
     .login-header .text {
-      width: 90%; }
+      position: initial;
+      width: 100%;
+      z-index: 4;
+      padding-left: 50px;
+      font-size: 29px; }
     .login-header form {
       margin-top: 78px; }
     .login-header a, .login-header .submit {
@@ -3032,7 +3048,7 @@ body {
     .login-header a {
       margin-top: 30px; }
     .login-header .submit {
-      margin-top: 169px; } }
+      margin-top: 73px; } }
 header {
   height: 80px;
   width: 100%;
@@ -3065,6 +3081,9 @@ header {
     font-family: "Roboto", cursive;
     display: inline-block;
     margin: 15px; }
+    @media screen and (max-width: 430px) {
+      header li {
+        margin: 0 0; } }
     header li .text {
       color: #009688;
       font-weight: 400;
@@ -3125,7 +3144,7 @@ header {
 
 .short-section {
   height: 600px; }
-  @media screen and (max-width: 400px) {
+  @media screen and (max-width: 430px) {
     .short-section {
       display: none; } }
 
@@ -3140,7 +3159,7 @@ section {
       margin: 0 0;
       height: 870px;
       width: 100%; } }
-  @media screen and (max-width: 400px) {
+  @media screen and (max-width: 430px) {
     section {
       margin: 0 0;
       width: 100%; } }
@@ -3198,12 +3217,12 @@ section {
         outline: none; }
   section ul {
     margin: 0 auto; }
-    @media screen and (max-width: 400px) {
+    @media screen and (max-width: 430px) {
       section ul {
         margin: 0 0; } }
     section ul li {
       width: 47%; }
-      @media screen and (max-width: 400px) {
+      @media screen and (max-width: 430px) {
         section ul li {
           width: 100%;
           display: block;
@@ -3213,7 +3232,7 @@ section {
     section ul li, section ul .tutorial {
       display: inline-block;
       margin: 10px; }
-      @media screen and (max-width: 400px) {
+      @media screen and (max-width: 430px) {
         section ul li, section ul .tutorial {
           display: block;
           margin: 0 0; } }
@@ -3235,10 +3254,10 @@ section {
         section ul li article p, section ul .tutorial article p {
           font-size: 190px;
           text-align: center; }
-          @media screen and (max-width: 400px) {
+          @media screen and (max-width: 430px) {
             section ul li article p, section ul .tutorial article p {
               font-size: 150px; } }
-        @media screen and (max-width: 400px) {
+        @media screen and (max-width: 430px) {
           section ul li article h4, section ul .tutorial article h4 {
             overflow: auto;
             height: 181px;
@@ -3287,7 +3306,7 @@ section {
   background: url("../kairopyorganizacion.png");
   background-size: cover;
   font-family: "Roboto"; }
-  @media screen and (max-width: 400px) {
+  @media screen and (max-width: 430px) {
     .order {
       display: none; } }
   .order h2 {
