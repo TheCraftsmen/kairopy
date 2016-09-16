@@ -1,0 +1,130 @@
+{% extends "base.html" %}
+{% block content %}
+
+<header>
+    <nav>
+      <ul class="left-nav">
+        <li>
+          <a href="/logout">
+            <i class="ion-power">
+            </i>
+          </a>
+        </li>
+        <li>
+          <a href="/">
+            <i class="ion-home">
+            </i>
+          </a>
+        </li>
+      </ul>
+      <ul class="right-nav">
+        <li>
+          <a href="/tutorial">
+            <i class="ion-help">
+            </i>
+          </a>
+        </li>
+      </ul>
+    </nav>
+  </header>
+  <section class="mobile-user">
+    <article class="mobile-user-main-menu">
+      <h3>Hacer Pedido</h3>
+      <ul>
+        <li onclick="changeToStats();">
+          mis turnos
+        </li>
+        <li onclick="changeToFavorite();">
+          favoritos
+        </li>
+        <li onclick="changeToSearchDealer();">
+          nuevo
+        </li>
+      </ul>
+      <script type="text/javascript">
+        function changeToFavorite(){
+          $('.mobile-user-main-menu').hide();
+          $('.mobile-user-favorites').show();
+        }
+        function changeToSearchDealer(){
+          $('.mobile-user-main-menu').hide();
+          $('.mobile-search-dealer').show(); 
+        }
+        function changeToStats(){
+          $('.mobile-user-main-menu').hide();
+          $('.mobile-user-stats').show(); 
+        }
+      </script>
+    </article>
+    <article class="mobile-user-stats">
+      <ul>
+        <li>
+          <div>
+             <h2>cliente 1</h2>
+             <p>Turno Actual 30</p>
+             <p>tu turno 28</p>  
+          </div>
+        </li>
+        <li>
+          <div>
+             <h2>cliente 2</h2>
+             <p>Turno Actual 3</p>
+             <p>tu turno 1</p>  
+          </div>
+        </li>
+      </ul>
+      <a href="/">Volver al Incio</a>
+    </article>
+    <article class="mobile-search-dealer">
+      <form action="" method="post" onsubmit="changeToNewSales(); return false">
+        <input type="text" name="dealer" placeholder="id de comercio">
+        <input type="submit" name="buscar" value="buscar">
+      </form>
+      <script type="text/javascript">
+        function changeToNewSales(){
+          $('.mobile-search-dealer').hide();
+          $('.mobile-user-new-sale').show(); 
+        }
+      </script>
+    </article>
+    <article class="mobile-user-new-sale">
+      <form action="" method="post" onsubmit="endMessage(); return false">
+          <input type="text" name="dealer" placeholder="comericante">
+          <input type="hidden" value={{ current_user.get_name() }} size='50'>
+          <input type="text" name="description" placeholder="pedido">
+          <input type="submit" name="confirmar" value="confirmar">
+      </form>
+      <script type="text/javascript">
+        function endMessage(){
+          $('.mobile-user-new-sale').hide();
+          $('.mobile-user-end-sale').show(); 
+        }
+      </script>
+    </article>
+    <article class="mobile-user-favorites">
+      <h3>Favoritos</h3>
+      <ul>
+        <li onclick="changeToFavoriteNewSalesOrder();">
+          usuario1
+        </li>
+        <li onclick="changeToFavoriteNewSalesOrder();">
+          usuario2
+        </li>
+        <li onclick="changeToFavoriteNewSalesOrder();">
+          usuario3
+        </li>
+      </ul>
+      <script type="text/javascript">
+        function changeToFavoriteNewSalesOrder(){
+          $('.mobile-user-favorites').hide();
+          $('.mobile-user-new-sale').show(); 
+        }
+      </script>
+    </article>
+    <article class="mobile-user-end-sale">
+      <h3>Pedido enviando correcto</h3>
+      <a href="/">Volver al Incio</a>
+    </article>
+  </section>
+
+{% endblock %}

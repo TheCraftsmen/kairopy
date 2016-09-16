@@ -7,7 +7,7 @@
     <nav>
         <ul class="left-nav">
             <li>
-                <h4>Kairopy</h4>
+                <a href="/"><h4>Kairopy</h4></a>
             </li>
         </ul>
     </nav>
@@ -21,6 +21,18 @@
         {{ form.password(size=50, placeholder="contraseña", class="text", required="required") }}
         {{ form.repeatpassword(size=50, placeholder="repetir contraseña", class="text", required="required") }}
         {{ form.email(size=50, placeholder="email", class="text", required="required", id="email") }}
+        <ul>
+          <li>
+            <input type="radio" id="f-option" name="role" value="customer" checked="true">
+            <label for="f-option">Cliente</label>
+            <div class="check"></div>
+          </li>
+          <li>
+            <input type="radio" id="s-option" name="role" value="dealer">
+            <label for="s-option">Comerciante</label>
+            <div class="check"></div>
+          </li>
+        </ul>
         <input type="submit" class="submit" value="Enviar">
     </form>
 </section>

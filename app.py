@@ -128,7 +128,8 @@ def logup():
             db.session.add(User(
             form.username.data,
             form.email.data, 
-            form.password.data))
+            form.password.data,
+            request.form['role']))
             db.session.commit()
             user = User.query.filter_by(email=form.email.data).first()
             db.session.add(UserSettings(user.id))
@@ -198,6 +199,8 @@ def validateemail(user_id, token):
 @app.route('/')
 @login_required
 def index():
+    if current_user.user_role == 'customer':
+        return render_template("customer.html")
     process = RequestList.query.filter_by(status= 2).filter_by(user_id=current_user.id).filter(RequestList.request_date >=datetime.date.today()).count()
     pending = RequestList.query.filter(RequestList.status.in_((0, 1))).filter_by(user_id=current_user.id).filter(RequestList.request_date >=datetime.date.today()).count()
     totalToday = RequestList.query.filter_by(user_id=current_user.id).filter(RequestList.request_date >=datetime.date.today()).count()

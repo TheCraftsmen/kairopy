@@ -3018,6 +3018,9 @@ input[type=submit] {
 
 body {
   background: #f1f1f1; }
+  @media screen and (max-width: 430px) {
+    body {
+      background: black; } }
 
 @media screen and (max-width: 430px) {
   .login-header {
@@ -3189,6 +3192,66 @@ section {
     @media screen and (max-width: 800px) {
       section form {
         width: 95%; } }
+    section form ul {
+      list-style: none;
+      height: 100%;
+      width: 100%;
+      margin: 0;
+      padding: 0; }
+      section form ul li {
+        margin: 0 0;
+        background: black;
+        color: #009688;
+        display: block;
+        position: relative;
+        float: left;
+        width: 100%;
+        height: 100px;
+        border-bottom: 1px solid #111111; }
+        section form ul li input[type=radio] {
+          position: absolute;
+          visibility: hidden; }
+        section form ul li label {
+          display: block;
+          position: relative;
+          font-weight: 400;
+          font-size: 60px;
+          padding: 17px 25px 25px 82px;
+          margin: 0 0;
+          height: 30px;
+          z-index: 9;
+          cursor: pointer;
+          -webkit-transition: all 0.25s linear; }
+        section form ul li .check {
+          display: block;
+          position: absolute;
+          border: 5px solid #009688;
+          border-radius: 100%;
+          height: 25px;
+          width: 25px;
+          top: 30px;
+          left: 20px;
+          z-index: 5;
+          transition: border 0.25s linear;
+          -webkit-transition: border 0.25s linear; }
+        section form ul li .check::before {
+          display: block;
+          position: absolute;
+          content: "";
+          border-radius: 100%;
+          height: 15px;
+          width: 15px;
+          top: 5px;
+          left: 5px;
+          margin: auto;
+          transition: background 0.25s linear;
+          -webkit-transition: background 0.25s linear; }
+        section form ul li input[type=radio]:checked ~ .check {
+          border: 5px solid #009688; }
+        section form ul li input[type=radio]:checked ~ .check::before {
+          background: #009688; }
+        section form ul li input[type=radio]:checked ~ label {
+          color: #009688; }
     section form input, section form .text {
       border: none;
       width: 100%;
@@ -3319,6 +3382,9 @@ section {
   @media screen and (max-width: 430px) {
     .order {
       display: none; } }
+  @media screen and (max-width: 770px) {
+    .order {
+      background-position-x: -332px; } }
   .order h2 {
     padding-top: 30px;
     font-size: 40px;
@@ -3360,6 +3426,74 @@ section {
   .order .gear-info {
     top: 71%;
     left: 75%; }
+
+.mobile-user {
+  background: #f1f1f1; }
+  .mobile-user .mobile-user-new-sale, .mobile-user .mobile-user-favorites, .mobile-user .mobile-user-end-sale, .mobile-user .mobile-search-dealer, .mobile-user .mobile-user-stats {
+    background: #f1f1f1;
+    display: none; }
+    .mobile-user .mobile-user-new-sale form, .mobile-user .mobile-user-favorites form, .mobile-user .mobile-user-end-sale form, .mobile-user .mobile-search-dealer form, .mobile-user .mobile-user-stats form {
+      margin: 0 0;
+      width: 100%;
+      box-sizing: border-box; }
+      .mobile-user .mobile-user-new-sale form input, .mobile-user .mobile-user-favorites form input, .mobile-user .mobile-user-end-sale form input, .mobile-user .mobile-search-dealer form input, .mobile-user .mobile-user-stats form input {
+        border: none;
+        width: 100%;
+        height: 53px;
+        font-size: 30px;
+        text-transform: uppercase; }
+      .mobile-user .mobile-user-new-sale form input[type=submit], .mobile-user .mobile-user-favorites form input[type=submit], .mobile-user .mobile-user-end-sale form input[type=submit], .mobile-user .mobile-search-dealer form input[type=submit], .mobile-user .mobile-user-stats form input[type=submit] {
+        background: #009688; }
+    .mobile-user .mobile-user-new-sale h3, .mobile-user .mobile-user-favorites h3, .mobile-user .mobile-user-end-sale h3, .mobile-user .mobile-search-dealer h3, .mobile-user .mobile-user-stats h3 {
+      text-align: center;
+      font-family: "Roboto";
+      font-size: 34px;
+      padding-top: 10px;
+      padding-bottom: 10px;
+      background: black;
+      color: #009688; }
+    .mobile-user .mobile-user-new-sale ul li, .mobile-user .mobile-user-new-sale a, .mobile-user .mobile-user-favorites ul li, .mobile-user .mobile-user-favorites a, .mobile-user .mobile-user-end-sale ul li, .mobile-user .mobile-user-end-sale a, .mobile-user .mobile-search-dealer ul li, .mobile-user .mobile-search-dealer a, .mobile-user .mobile-user-stats ul li, .mobile-user .mobile-user-stats a {
+      text-align: center;
+      border-bottom: 1px solid black;
+      padding-top: 13px;
+      padding-bottom: 13px;
+      font-size: 26px;
+      text-transform: uppercase;
+      font-family: "Roboto";
+      background: white;
+      transition: 0.3s; }
+      .mobile-user .mobile-user-new-sale ul li:active, .mobile-user .mobile-user-new-sale a:active, .mobile-user .mobile-user-favorites ul li:active, .mobile-user .mobile-user-favorites a:active, .mobile-user .mobile-user-end-sale ul li:active, .mobile-user .mobile-user-end-sale a:active, .mobile-user .mobile-search-dealer ul li:active, .mobile-user .mobile-search-dealer a:active, .mobile-user .mobile-user-stats ul li:active, .mobile-user .mobile-user-stats a:active {
+        background: black;
+        color: #009688; }
+    .mobile-user .mobile-user-new-sale a, .mobile-user .mobile-user-favorites a, .mobile-user .mobile-user-end-sale a, .mobile-user .mobile-search-dealer a, .mobile-user .mobile-user-stats a {
+      background: #009688;
+      color: black;
+      display: block;
+      text-decoration: none; }
+  .mobile-user .mobile-user-main-menu {
+    background: #f1f1f1; }
+    .mobile-user .mobile-user-main-menu h3 {
+      text-align: center;
+      font-family: "Roboto";
+      font-size: 34px;
+      padding-top: 10px;
+      padding-bottom: 10px;
+      background: black;
+      color: #009688; }
+    .mobile-user .mobile-user-main-menu ul li {
+      text-align: center;
+      border-bottom: 1px solid black;
+      padding-top: 13px;
+      padding-bottom: 13px;
+      font-size: 26px;
+      text-transform: uppercase;
+      font-family: "Roboto";
+      background: white;
+      border-box: box-sizing;
+      transition: 0.3s; }
+      .mobile-user .mobile-user-main-menu ul li:active {
+        background: black;
+        color: #009688; }
 
 footer {
   width: 100%;

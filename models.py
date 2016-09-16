@@ -21,11 +21,13 @@ class User(db.Model):
     validate = db.Column(db.Boolean, default=False)
     role = db.Column(db.String(10), default='user')
     user_offers = relationship("UserOffer", backref="user")
+    user_role = db.Column(db.String(10), default='customer')
 
-    def __init__(self, name, email, password):
+    def __init__(self, name, email, password, user_role):
         self.username = name
         self.email = email
         self.hash_password(password)
+        self.user_role = user_role
 
     def get_name(self):
         return self.username
