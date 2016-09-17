@@ -77,27 +77,69 @@
     </article>
     <article class="mobile-search-dealer">
       <form action="" method="post" onsubmit="changeToNewSales(); return false">
-        <input type="text" name="dealer" placeholder="id de comercio">
+        <input type="text" id="dealer" name="dealer" placeholder="id de comercio">
         <input type="submit" name="buscar" value="buscar">
       </form>
+      <div id="error">
+      </div>
       <script type="text/javascript">
         function changeToNewSales(){
-          $('.mobile-search-dealer').hide();
-          $('.mobile-user-new-sale').show(); 
+          $.ajax({
+            url: '/customer_search_dealer',
+            type: 'POST',
+            data: {id: document.getElementById("dealer").value},
+            success: function(response){
+              console.log(response.data);
+              var obj = response.data;
+              for(key in obj) {
+                  if(obj.hasOwnProperty(key)) {
+                      var value = obj[key];
+                      document.getElementById("dealer_id").value = value.user_id;
+                      document.getElementById("dealername").value = value.username;
+                      /*console.log(key)
+                      console.log(value.user_id);*/
+                      //do something with value;
+                  }
+              }
+              /*
+              $.each(obj, function(i, item) {console.log(obj.user_id);});
+              document.getElementById("fieldname").value = ish;
+              */
+              $('.mobile-search-dealer').hide();
+              $('.mobile-user-new-sale').show(); 
+            },
+            error:  function(response){
+              var error_text = '';
+              var obj = JSON.parse(response.responseText);
+              $.each(obj, function(i, item) {error_text += obj.error;});
+              $('#error').html('<p>' + error_text + '</p>')
+            }
+          });
         }
       </script>
     </article>
     <article class="mobile-user-new-sale">
-      <form action="" method="post" onsubmit="endMessage(); return false">
-          <input type="text" name="dealer" placeholder="comericante">
-          <input type="hidden" value={{ current_user.get_name() }} size='50'>
+      <form id="new_sales" action="" method="post" onsubmit="endMessage(); return false">
+          <input type="hidden" name="dealer_id" id="dealer_id">
+          <input type="text" id="dealername" name="dealername" placeholder="comericante">
           <input type="text" name="description" placeholder="pedido">
           <input type="submit" name="confirmar" value="confirmar">
       </form>
       <script type="text/javascript">
         function endMessage(){
-          $('.mobile-user-new-sale').hide();
-          $('.mobile-user-end-sale').show(); 
+          $.ajax({
+            url: '/customer_new_sales_to_dealer',
+            type: 'POST',
+            data: $('#new_sales').serialize(),
+            success: function(response){
+              $('.mobile-user-new-sale').hide();
+              $('.mobile-user-end-sale').show(); 
+            },
+            error: function(response){
+              console.log('error');
+            }
+
+          });
         }
       </script>
     </article>

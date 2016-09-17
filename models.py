@@ -80,6 +80,10 @@ class User(db.Model):
     def is_anonymous(self):
         return False
 
+    @classmethod
+    def getUserInfo(self, user_id):
+        return self.query.filter_by(id=user_id).first()
+
     def get_id(self):
         try:
             return unicode(self.id)  # python 2

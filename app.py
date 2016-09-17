@@ -258,6 +258,45 @@ def delete_offers(table_id):
         db.session.delete(o)
         db.session.commit()
 
+@app.route('/customer_search_dealer', methods=['GET', 'POST'])
+@login_required
+def customer_search_dealer():
+    if request.method != 'POST': return False
+    if not request.form: return False
+    data = list()
+    search = User.getUserInfo(request.form['id'])
+    if not search:
+        return jsonify({ "error": "no se encontro el usuario" }), 500
+    search_data = dict(user_id=search.id,username=search.username)
+    data.append(search_data)
+    return jsonify({'data': data})
+
+@app.route('/customer_new_sales_to_dealer', methods=['GET', 'POST'])
+@login_required
+def customer_new_sales_to_dealer():
+    if request.method == 'POST':
+        print(request.form)
+        if request.form['dealer_id'] and request.form['description']:
+            query_result = RequestList.query.\
+            filter_by(user_id=request.form['dealer_id']).\
+            order_by(RequestList.table_id.desc()).first()
+            if query_result:
+                lastDate = query_result.request_date
+                lastNumber = query_result.number
+            pNumber = 1
+            if lastDate == datetime.date.today():
+                pNumber = lastNumber + 1
+            rl = RequestList(
+            custname=current_user.get_name(),
+            request_type=request.form['description'],
+            status=0,
+            number=pNumber,
+            user_id=request.form['dealer_id'])
+            db.session.add(rl)
+            db.session.commit()
+            return jsonify({ "success": "pedido correcto" })
+        else:
+            return jsonify({ "error": "error, intente otra vez" }), 500
 
 if __name__ == '__main__':
     app.run()
