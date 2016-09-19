@@ -37,6 +37,7 @@ def getMaxTurnfordealer(alldealer, responseDict):
 			values.append(maxturnfordealerdic.get(keys[1]))
 		#print keys
 	#print("------------------------------------------\n")
+	#esto es un texto
 
 alldealer, responseDict = getCustomerAllTurn()
 getMaxTurnfordealer(alldealer, responseDict)
