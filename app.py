@@ -79,19 +79,20 @@ api.add_resource(ChangeSettings, '/_change_settings/<int:user_id>/<string:column
 @app.route('/request', methods=['GET', 'POST'])
 @login_required
 def request_view():
+    if current_user.user_role == 'customer':
+        return redirect(url_for('index'))
     from models import RequestList
     lastNumber = False
     lastDate = False
     lastStatus = False
     print(current_user.get_name())
     queryA = RequestList.query.filter_by(user_id=current_user.get_id()).order_by(RequestList.table_id.desc()).limit(1)
+    lastNumber = 0
     for row in queryA:
         lastDate = row.request_date
         lastNumber = row.number
         lastStatus = row.status
-    pNumber = 1
-    if lastDate == datetime.date.today():
-        pNumber = lastNumber + 1
+    pNumber = lastNumber + 1
     if request.method == 'POST':
         if request.form['cust_name']:
             rl = RequestList(
@@ -108,12 +109,16 @@ def request_view():
 @app.route('/monitor')
 @login_required
 def monitor():
+    if current_user.user_role == 'customer':
+        return redirect(url_for('index'))
     offers = UserOffer.getOffersforUser(current_user.get_id())
     return render_template('monitor.html', offers=offers)
 
 
 @app.route('/tutorial')
 def tutorial():
+    if current_user.user_role == 'customer':
+        return redirect(url_for('index'))
     return render_template('tutorial.html')
 
 
@@ -234,6 +239,8 @@ def logout():
 @app.route('/user_offers', methods=['GET', 'POST', 'DELETE'])
 @login_required
 def user_offers():
+    if current_user.user_role == 'customer':
+        return redirect(url_for('index'))
     error = None
     form = OffersForm()
     if request.method == 'POST' and form.validate_on_submit():
@@ -280,12 +287,11 @@ def customer_new_sales_to_dealer():
             query_result = RequestList.query.\
             filter_by(user_id=request.form['dealer_id']).\
             order_by(RequestList.table_id.desc()).first()
+            lastNumber = 0
             if query_result:
                 lastDate = query_result.request_date
                 lastNumber = query_result.number
-            pNumber = 1
-            if lastDate == datetime.date.today():
-                pNumber = lastNumber + 1
+            pNumber = lastNumber + 1
             rl = RequestList(
             custname=current_user.get_name(),
             request_type=request.form['description'],
@@ -297,6 +303,45 @@ def customer_new_sales_to_dealer():
             return jsonify({ "success": "pedido correcto" })
         else:
             return jsonify({ "error": "error, intente otra vez" }), 500
+
+@app.route('/customer_all_turn')
+@login_required
+def customer_all_turn():
+    alldealer, responseDict = getCustomerAllTurn()
+    getMaxTurnfordealer(alldealer, responseDict)
+    if not responseDict:
+        return jsonify({'error':'sin turnos pendientes'}), 500
+    return jsonify({'customer_turn': [responseDict]})
+
+def getCustomerAllTurn():
+    all_turn_user_id = []
+    responseDict = {}
+    customerTurn = 'select rl.table_id, u.username, u.id, rl.number from requestlist rl '
+    customerTurn += 'inner join users u on rl.user_id = u.id '
+    customerTurn += 'where cust_name = "%s" ' % (current_user.get_name())
+    customerTurn += 'and status = 0 '
+    customerTurn += 'group by table_id '
+    cturn = db.engine.execute(customerTurn)
+    for row in cturn:
+        all_turn_user_id.append(row.id)
+        responseDict["%s-%s" % (row.table_id, row.id)] = [row.username, row.id, row.number]
+    return ','.join(map(str, all_turn_user_id)), responseDict
+
+def getMaxTurnfordealer(alldealer, responseDict):
+    maxturnfordealerdic = {}
+    maxTurnfordealer = 'select  user_id, max(number) as number from requestlist '
+    maxTurnfordealer += 'where status > 1 '
+    maxTurnfordealer += 'and user_id in (%s)' % alldealer
+    maxTurnfordealer += 'group by user_id '
+    mtd = db.engine.execute(maxTurnfordealer)
+    for row in mtd:
+        maxturnfordealerdic[str(row.user_id)] = row.number
+    for k, v in responseDict.items():
+        keys = k.split('-')
+        if keys[1] in maxturnfordealerdic:
+            values = responseDict[k]
+            values.append(maxturnfordealerdic.get(keys[1]))
+
 
 if __name__ == '__main__':
     app.run()

@@ -3125,18 +3125,36 @@ header {
   margin: 0 auto;
   margin-top: 7px;
   width: 100%; }
+  @media screen and (max-width: 800px) {
+    .monitor-section {
+      margin-top: 0; } }
   .monitor-section .medium {
     float: left;
     width: 39%;
     margin-left: 10px; }
+    @media screen and (max-width: 800px) {
+      .monitor-section .medium {
+        float: none;
+        width: 100%;
+        margin: 0 0; } }
   .monitor-section .large {
     float: left;
     width: 60%;
     margin-left: 24px; }
+    @media screen and (max-width: 800px) {
+      .monitor-section .large {
+        float: none;
+        width: 100%;
+        margin: 0 0; } }
   .monitor-section form {
     width: 58%;
     float: right;
     margin-right: 10px; }
+    @media screen and (max-width: 800px) {
+      .monitor-section form {
+        float: none;
+        width: 100%;
+        margin: 0 0; } }
   .monitor-section .small {
     margin: 0 auto;
     float: right;
@@ -3154,6 +3172,12 @@ header {
         .monitor-section .small ul li article p {
           font-size: 160px;
           padding-top: 35px; }
+    @media screen and (max-width: 800px) {
+      .monitor-section .small {
+        display: none;
+        float: none;
+        width: 100%;
+        margin: 0 0; } }
 
 .short-section {
   height: 600px; }
@@ -3175,7 +3199,8 @@ section {
   @media screen and (max-width: 430px) {
     section {
       margin: 0 0;
-      width: 100%; } }
+      width: 100%;
+      height: 971px; } }
   section article {
     width: 100%;
     background: black none repeat scroll 0% 0%;
@@ -3192,6 +3217,10 @@ section {
     @media screen and (max-width: 800px) {
       section form {
         width: 95%; } }
+    @media screen and (max-width: 440px) {
+      section form {
+        width: 100%;
+        margin: 0 0; } }
     section form ul {
       list-style: none;
       height: 100%;
@@ -3222,6 +3251,10 @@ section {
           z-index: 9;
           cursor: pointer;
           -webkit-transition: all 0.25s linear; }
+          @media screen and (max-width: 440px) {
+            section form ul li label {
+              font-size: 40px;
+              padding: 29px 25px 25px 82px; } }
         section form ul li .check {
           display: block;
           position: absolute;
@@ -3265,6 +3298,10 @@ section {
       font-weight: 700;
       background: black;
       padding: 13px; }
+      @media screen and (max-width: 440px) {
+        section form h3 {
+          padding: 0 0;
+          font-size: 56px; } }
     section form .text, section form h3 {
       color: #009688; }
     section form .text {
@@ -3272,6 +3309,10 @@ section {
       font-weight: 400;
       font-size: 60px;
       border-bottom: 4px solid #009688; }
+      @media screen and (max-width: 440px) {
+        section form .text {
+          font-size: 40px;
+          border-bottom: 2px solid #009688; } }
     section form .submit {
       font-weight: 400;
       font-size: 45px;
@@ -3345,6 +3386,11 @@ section {
     padding: 0px 46px;
     background: white;
     box-shadow: 0px 1px 8px 1px; }
+    @media screen and (max-width: 800px) {
+      section table {
+        width: 100%;
+        font-size: 15px;
+        padding: 0 0; } }
     section table .small-table {
       padding: 10px; }
     section table .black-green {
@@ -3429,6 +3475,8 @@ section {
 
 .mobile-user {
   background: #f1f1f1; }
+  .mobile-user hr {
+    width: 73%; }
   .mobile-user .mobile-user-new-sale, .mobile-user .mobile-user-favorites, .mobile-user .mobile-user-end-sale, .mobile-user .mobile-search-dealer, .mobile-user .mobile-user-stats {
     background: #f1f1f1;
     display: none; }
@@ -3454,7 +3502,7 @@ section {
       color: #009688; }
     .mobile-user .mobile-user-new-sale ul li, .mobile-user .mobile-user-new-sale a, .mobile-user .mobile-user-favorites ul li, .mobile-user .mobile-user-favorites a, .mobile-user .mobile-user-end-sale ul li, .mobile-user .mobile-user-end-sale a, .mobile-user .mobile-search-dealer ul li, .mobile-user .mobile-search-dealer a, .mobile-user .mobile-user-stats ul li, .mobile-user .mobile-user-stats a {
       text-align: center;
-      border-bottom: 1px solid black;
+      margin-bottom: 6px;
       padding-top: 13px;
       padding-bottom: 13px;
       font-size: 26px;
@@ -3482,7 +3530,7 @@ section {
       color: #009688; }
     .mobile-user .mobile-user-main-menu ul li {
       text-align: center;
-      border-bottom: 1px solid black;
+      margin-bottom: 6px;
       padding-top: 13px;
       padding-bottom: 13px;
       font-size: 26px;

@@ -17,14 +17,6 @@
           </a>
         </li>
       </ul>
-      <ul class="right-nav">
-        <li>
-          <a href="/tutorial">
-            <i class="ion-help">
-            </i>
-          </a>
-        </li>
-      </ul>
     </nav>
   </header>
   <section class="mobile-user">
@@ -51,27 +43,49 @@
           $('.mobile-search-dealer').show(); 
         }
         function changeToStats(){
-          $('.mobile-user-main-menu').hide();
-          $('.mobile-user-stats').show(); 
+          $.ajax({
+            url: '/customer_all_turn',
+            type: 'GET',
+            success: function(response){
+              var obj = response.customer_turn;
+              for(key in obj) {
+                  var create_div = ''
+                  if(obj.hasOwnProperty(key)) {
+                      var value = obj[key];
+                      for (key2 in value) {
+                        var value2 = value[key2];
+                        create_div += '<li><div>';
+                        for(key3 in value2){
+                          if (key3 == 0) {
+                            create_div += "<p>comercio: " + value2[key3] + "</p><hr>";
+                          }
+                          else if (key3 == 1) {
+                            continue;
+                          }
+                          else if (key3 == 2) {
+                            create_div += "<p>su turno: " + value2[key3] + "</p>";
+                          }
+                          else{
+                            create_div += "<p>turno actual: " + value2[key3] + "</p>";
+                          }
+                        }
+                        create_div += '</div></li>';
+                      }
+                  }
+              }
+              $('.mobile-user-stats-list').html(create_div);
+              $('.mobile-user-main-menu').hide();
+              $('.mobile-user-stats').show(); 
+            },
+            error: function(response){
+
+            },
+          });
         }
       </script>
     </article>
     <article class="mobile-user-stats">
-      <ul>
-        <li>
-          <div>
-             <h2>cliente 1</h2>
-             <p>Turno Actual 30</p>
-             <p>tu turno 28</p>  
-          </div>
-        </li>
-        <li>
-          <div>
-             <h2>cliente 2</h2>
-             <p>Turno Actual 3</p>
-             <p>tu turno 1</p>  
-          </div>
-        </li>
+      <ul class="mobile-user-stats-list">
       </ul>
       <a href="/">Volver al Incio</a>
     </article>
@@ -96,15 +110,8 @@
                       var value = obj[key];
                       document.getElementById("dealer_id").value = value.user_id;
                       document.getElementById("dealername").value = value.username;
-                      /*console.log(key)
-                      console.log(value.user_id);*/
-                      //do something with value;
                   }
               }
-              /*
-              $.each(obj, function(i, item) {console.log(obj.user_id);});
-              document.getElementById("fieldname").value = ish;
-              */
               $('.mobile-search-dealer').hide();
               $('.mobile-user-new-sale').show(); 
             },
@@ -144,7 +151,7 @@
       </script>
     </article>
     <article class="mobile-user-favorites">
-      <h3>Favoritos</h3>
+      <!-- <h3>Favoritos</h3>
       <ul>
         <li onclick="changeToFavoriteNewSalesOrder();">
           usuario1
@@ -155,7 +162,8 @@
         <li onclick="changeToFavoriteNewSalesOrder();">
           usuario3
         </li>
-      </ul>
+      </ul> -->
+      <a href="/">Volver al Incio</a>
       <script type="text/javascript">
         function changeToFavoriteNewSalesOrder(){
           $('.mobile-user-favorites').hide();
