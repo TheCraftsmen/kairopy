@@ -282,27 +282,57 @@ def customer_search_dealer():
 @login_required
 def customer_new_sales_to_dealer():
     if request.method == 'POST':
-        print(request.form)
-        if request.form['dealer_id'] and request.form['description']:
-            query_result = RequestList.query.\
-            filter_by(user_id=request.form['dealer_id']).\
-            order_by(RequestList.table_id.desc()).first()
-            lastNumber = 0
-            if query_result:
-                lastDate = query_result.request_date
-                lastNumber = query_result.number
-            pNumber = lastNumber + 1
-            rl = RequestList(
+        return customer_new_sales_post_procedures(request)
+
+
+def customer_new_sales_post_procedures(request):
+    if saveCustomerTurnValidation(request):
+        return saveCustomerTurn(request)
+    else:
+        return jsonify({ "error": "error, intente otra vez" }), 500
+
+
+def saveCustomerTurnValidation(request):
+    return request.form['dealer_id'] and request.form['description']
+
+
+def saveCustomerTurn(request):
+    query_result = RequestList.\
+    searchLastTurninDatabase(request.form['dealer_id'])
+    pNumber = getLastNumber(query_result)
+    saveCustomerTurninDatabase(request, pNumber)
+    saveToFavorites(current_user.get_id(),
+    request.form['dealer_id'], request.form['dealername'])
+    return jsonify({ "success": "pedido correcto" })
+
+def getLastNumber(query_result):
+    lastNumber = 0
+    if query_result:
+        lastNumber = query_result.number
+    return lastNumber + 1
+
+
+def saveCustomerTurninDatabase(request, pNumber):
+    rl = RequestList(
             custname=current_user.get_name(),
             request_type=request.form['description'],
             status=0,
             number=pNumber,
             user_id=request.form['dealer_id'])
-            db.session.add(rl)
-            db.session.commit()
-            return jsonify({ "success": "pedido correcto" })
-        else:
-            return jsonify({ "error": "error, intente otra vez" }), 500
+    db.session.add(rl)
+    db.session.commit()
+
+
+def saveToFavorites(user_id, commerce_id, commerce_name):
+    if not UserFavoritesCommerce.getCommerceId(user_id, commerce_id):
+        saveFavoritesinDatabase(user_id, commerce_id, commerce_name)
+
+
+def saveFavoritesinDatabase(user_id, commerce_id, commerce_name):
+    usr = UserFavoritesCommerce(user_id, commerce_id, commerce_name) 
+    db.session.add(usr)
+    db.session.commit()
+
 
 @app.route('/customer_all_turn')
 @login_required
@@ -335,12 +365,17 @@ def getMaxTurnfordealer(alldealer, responseDict):
     maxTurnfordealer += 'group by user_id '
     mtd = db.engine.execute(maxTurnfordealer)
     for row in mtd:
-        maxturnfordealerdic[str(row.user_id)] = row.number
+        maxturnfordealerdic[str(row.user_id)] = row.number + 1
     for k, v in responseDict.items():
         keys = k.split('-')
         if keys[1] in maxturnfordealerdic:
             values = responseDict[k]
             values.append(maxturnfordealerdic.get(keys[1]))
+
+@app.route('/customer_get_favorites')
+@login_required
+def customer_get_favorites():
+    return UserFavoritesCommerce.getFavorites(current_user.get_id())
 
 
 if __name__ == '__main__':

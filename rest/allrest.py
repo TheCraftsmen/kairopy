@@ -57,7 +57,6 @@ class ChangeSettings(Resource):
         us = UserSettings.query.filter_by(user_id=user_id).first()
         if us:
             exec("us.%s = '%s' " % (column_name,new_value))
-            #us[column_name] = new_value
             db.session.commit()
         return
 

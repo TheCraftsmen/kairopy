@@ -1,4 +1,4 @@
-from app import db, app
+from app import db, app, jsonify
 from passlib.apps import custom_app_context as pwd_context
 from itsdangerous import (TimedJSONWebSignatureSerializer
                           as Serializer, BadSignature, SignatureExpired)
@@ -22,6 +22,7 @@ class User(db.Model):
     role = db.Column(db.String(10), default='user')
     user_offers = relationship("UserOffer", backref="user")
     user_role = db.Column(db.String(10), default='customer')
+    favorites_commerce = relationship("UserFavoritesCommerce", backref="user")
 
     def __init__(self, name, email, password, user_role):
         self.username = name
@@ -93,6 +94,39 @@ class User(db.Model):
     def __repr__(self):
         return '<name {}'.format(self.username)
 
+class UserFavoritesCommerce(db.Model):
+
+    __tablename__ = "user_favorites_commerce"
+
+    table_id = db.Column(db.Integer, primary_key=True)
+    user_id = db.Column(db.Integer, ForeignKey('users.id'))
+    commerce_id = db.Column(db.Integer)
+    commerce_name = db.Column(db.String(32))
+
+    def __init__(self, user_id, commerce_id, commerce_name):
+        self.user_id = user_id
+        self.commerce_id = commerce_id
+        self.commerce_name = commerce_name
+
+    @classmethod
+    def getCommerceId(self, user_id, commerce_id):
+        return self.query.filter_by(user_id=user_id).\
+        filter_by(commerce_id=commerce_id).first()
+
+    @property
+    def serialize(self):
+       return {
+           'user_id': self.user_id,
+           'commerce_id': self.commerce_id,
+           'commerce_name': self.commerce_name
+           }
+
+    @classmethod
+    def getFavorites(self, user_id):
+        return jsonify(getFavorites=[i.serialize for i in self.query.filter_by(user_id=user_id)])
+
+    def __repr__(self):
+        pass
 
 class RequestList(db.Model):
 
@@ -112,6 +146,13 @@ class RequestList(db.Model):
         self.number = number
         self.user_id = user_id
         self.request_type = request_type
+
+    @classmethod
+    def searchLastTurninDatabase(self, user_id):
+        return self.query.\
+            filter_by(user_id=user_id).\
+            order_by(RequestList.table_id.desc()).first()
+
 
     def __repr__(self):
         pass

@@ -35,8 +35,33 @@
       </ul>
       <script type="text/javascript">
         function changeToFavorite(){
-          $('.mobile-user-main-menu').hide();
-          $('.mobile-user-favorites').show();
+          $.ajax({
+            url: '/customer_get_favorites',
+            type: 'GET',
+            success: function(response){
+              var obj = response.getFavorites;
+              new_html = '';
+              for(key in obj) {
+                  new_html += '<ul>';
+                  if(obj.hasOwnProperty(key)) {
+                      var value = obj[key];
+                      new_html += '<li onclick="' ;
+                      new_html += 'changeToFavoriteNewSalesOrder(';
+                      new_html += value.commerce_id + ', this.innerHTML' + ');"'
+                      new_html += '>';
+                      new_html += value.commerce_name + '</li>';
+                  }
+                  new_html += '</ul>';
+              }
+              new_html += '<a href="/">Volver al Incio</a>'
+              $('.mobile-user-favorites').html(new_html);
+              $('.mobile-user-main-menu').hide();
+              $('.mobile-user-favorites').show();
+            },
+            error: function(response){
+
+            }
+          });
         }
         function changeToSearchDealer(){
           $('.mobile-user-main-menu').hide();
@@ -57,7 +82,7 @@
                         create_div += '<li><div>';
                         for(key3 in value2){
                           if (key3 == 0) {
-                            create_div += "<p>comercio: " + value2[key3] + "</p><hr>";
+                            create_div += "<p>comercio: " + value2[key3] + "</p>";
                           }
                           else if (key3 == 1) {
                             continue;
@@ -103,7 +128,6 @@
             type: 'POST',
             data: {id: document.getElementById("dealer").value},
             success: function(response){
-              console.log(response.data);
               var obj = response.data;
               for(key in obj) {
                   if(obj.hasOwnProperty(key)) {
@@ -151,21 +175,11 @@
       </script>
     </article>
     <article class="mobile-user-favorites">
-      <!-- <h3>Favoritos</h3>
-      <ul>
-        <li onclick="changeToFavoriteNewSalesOrder();">
-          usuario1
-        </li>
-        <li onclick="changeToFavoriteNewSalesOrder();">
-          usuario2
-        </li>
-        <li onclick="changeToFavoriteNewSalesOrder();">
-          usuario3
-        </li>
-      </ul> -->
       <a href="/">Volver al Incio</a>
       <script type="text/javascript">
-        function changeToFavoriteNewSalesOrder(){
+        function changeToFavoriteNewSalesOrder(id, name){
+          document.getElementById("dealer_id").value = id;
+          document.getElementById("dealername").value = name;
           $('.mobile-user-favorites').hide();
           $('.mobile-user-new-sale').show(); 
         }
