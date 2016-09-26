@@ -1,0 +1,50 @@
+{% extends "dealer.html" %}
+{% block dealercontent %}
+
+<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
+<section>
+  <form action="" method="post" role="form">
+    <h3>consulta de turnos x dia</h3>
+    <input class="text" type="text" id="datepicker" name='datesearch' placeholder="ingrese fecha" required="required">
+    <input class="submit" type="submit" name="search" value="consultar">
+  </form>
+  <table class="medium">
+    <tr class="tb-head">
+      <th class="black-green">Fecha</th>
+      <th class="black-green">Nombre de Cliente</th>
+      <th class="black-green">Descripcion</th>
+      <th class="black-green">Estado</th>
+    </tr >
+    {% if results %}
+		{% for row in results %}
+			<tr class="tb-text">
+	        	<td class="text-center">{{ row.request_date }}</td>
+	        	<td class="text-center">{{ row.cust_name }}</td>
+	        	<td class="text-center">{{ row.request_type }}</td>
+	        	{% if row.status == 0 %}
+	        		<td class="text-center">pendiente</td>
+	        	{% else %}
+	        		<td class="text-center">finalizado</td>
+	        	{% endif %}
+	        	
+	        </tr>
+	    {% endfor %}
+    {% endif %}
+  </table>
+</section>
+
+<script>
+  $( function() {
+    $( "#datepicker" ).datepicker(
+    	{
+      	changeMonth: true,
+      	changeYear: true,
+      	dateFormat: 'yy-mm-dd'
+    	});
+  } );
+</script>
+
+
+{% endblock %}

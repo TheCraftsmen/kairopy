@@ -383,6 +383,23 @@ def getMaxTurnfordealer(alldealer, responseDict):
 def customer_get_favorites():
     return UserFavoritesCommerce.getFavorites(current_user.get_id())
 
+@app.route('/search', methods=['GET', 'POST'])
+@login_required
+def search_engine():
+    if current_user.user_role == 'customer':
+        return redirect(url_for('index'))
+    results = None
+    if request.method == 'POST':
+        search_date = request.form['datesearch']
+        if not search_date:
+            return render_template('search.html', results=results)
+        query = RequestList.query.\
+        filter_by(user_id=current_user.id).\
+        filter(RequestList.request_date == search_date)
+        if query:
+            results = query
+        return render_template('search.html', results=results)
+    return render_template('search.html', results=results)
 
 if __name__ == '__main__':
     app.run()
