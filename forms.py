@@ -3,7 +3,9 @@
 from flask_wtf import Form
 from wtforms import TextField, PasswordField, SelectField
 from wtforms.validators import DataRequired
+from flask_wtf.recaptcha import RecaptchaField
 from app import db
+
 
 class LoginForm(Form):
     """Form class for user login."""
@@ -17,10 +19,12 @@ class LogupForm(Form):
     email = TextField('EMAIL', validators=[DataRequired()])
     password = PasswordField(u'CONTRASEÑA', validators=[DataRequired()])
     repeatpassword = PasswordField(u'REPETIR CONTRASEÑA', validators=[DataRequired()])
+    recaptcha = RecaptchaField()
 
 class ResetForm(Form):
     """Form class for pass reset."""
     username = TextField('USUARIO', validators=[DataRequired()])
+    recaptcha = RecaptchaField()
 
 class OffersForm(Form):
     """Form class for OffersForm"""

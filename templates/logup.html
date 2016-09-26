@@ -9,6 +9,11 @@
             <li>
                 <a href="/"><h4>Kairopy</h4></a>
             </li>
+            <li>
+                {% if error %}
+                    <p class="text-red">{{ error }}</p>
+                {% endif %}
+            </li>
         </ul>
     </nav>
 </header>
@@ -34,6 +39,10 @@
           </li>
         </ul>
         <input type="submit" class="submit" value="Enviar">
+        {% for error in form.recaptcha.errors %}
+            {{ error }}
+        {% endfor %}
+        {{ form.recaptcha }}
     </form>
 </section>
 

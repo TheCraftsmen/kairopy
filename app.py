@@ -29,7 +29,7 @@ mail = Mail(app)
 # initialization
 login_manager = LoginManager()
 login_manager.init_app(app)
-app.config.from_object('config.ProductionConfig')
+app.config.from_object('config.DevelopmentConfig')
 api = Api(app)
 # extensions
 db = SQLAlchemy(app)
@@ -128,7 +128,13 @@ def logup():
     form = LogupForm()
     if request.method == 'POST' and form.validate_on_submit():
         usertest = User.query.filter_by(email=form.email.data).first()
-        if usertest: return render_template('logup.html', form=form, error=error)
+        usersearch = User.query.filter_by(username=form.username.data).first()
+        if usertest:
+            error = u"El email ya fue asociado a un usuario." 
+            return render_template('logup.html', form=form, error=error)
+        if usersearch:
+            error = u"El usuario ya fue registrado." 
+            return render_template('logup.html', form=form, error=error)
         if form.password.data == form.repeatpassword.data:
             db.session.add(User(
             form.username.data,

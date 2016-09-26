@@ -18,6 +18,10 @@
 	    {{ form.csrf_token }}
 	    {{ form.username(placeholder="usuario", class="text", required="required") }}
 	    <input class="submit" type="submit" name="enviar" value="Enviar">      
+	    {% for error in form.recaptcha.errors %}
+            {{ error }}
+        {% endfor %}
+        {{ form.recaptcha }}
 	</form>
 </section>
 
