@@ -29,7 +29,7 @@ mail = Mail(app)
 # initialization
 login_manager = LoginManager()
 login_manager.init_app(app)
-app.config.from_object('config.DevelopmentConfig')
+app.config.from_object('config.ProductionConfig')
 api = Api(app)
 # extensions
 db = SQLAlchemy(app)
