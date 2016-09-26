@@ -6,7 +6,7 @@
     <nav>
         <ul class="left-nav">
             <li>
-                <h4>Kairopy</h4>
+                <a href="/"><h4>Kairopy</h4></a>
             </li>
         </ul>
     </nav>
@@ -16,8 +16,8 @@
     <form role="form" action="" method="post">
         <h3>Cambiar Contraseña</h3>
         <input type="hidden" value={{ user_id }} name="user_id" id="user_id" placeholder="Nombre" size='50'>
-        <input class="text" type="text" name="password" id="password" placeholder="Descripcion" size='50' required="required">
-        <input class="text" type="text" name="repeatpassword" id="repeatpassword" placeholder="Descripcion" size='50' required="required">
+        <input class="text" type="password" name="password" id="password" placeholder="contraseña" size='50' required="required">
+        <input class="text" type="password" name="repeatpassword" id="repeatpassword" placeholder="repetir contraseña" size='50' required="required">
         <input class="submit" type="submit" value="Enviar">
     </form>    
 </section>
