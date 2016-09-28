@@ -4,6 +4,7 @@
    License: none (public domain)
 */
 @import 'https://fonts.googleapis.com/css?family=Roboto:300,300i,400,700';
+@import 'https://fonts.googleapis.com/css?family=Lobster';
 html, body, div, span, applet, object, iframe,
 h1, h2, h3, h4, h5, h6, p, blockquote, pre,
 a, abbr, acronym, address, big, cite, code,
@@ -3009,6 +3010,78 @@ table {
 .ion-xbox:before {
   content: ""; }
 
+.background-green {
+  font-family: "Lobster", sans-serif;
+  background: #009688;
+  width: 100%;
+  margin-top: 0;
+  height: 357px; }
+  @media screen and (max-width: 430px) {
+    .background-green {
+      display: none; } }
+  .background-green ul {
+    margin: 0px auto;
+    width: 50%; }
+    .background-green ul li {
+      text-align: center;
+      margin-top: 40px;
+      width: 45%; }
+      .background-green ul li img {
+        position: relative;
+        top: 39px;
+        left: 8px; }
+      .background-green ul li h2 {
+        font-size: 90px;
+        text-transform: capitalize;
+        font-weight: 700;
+        margin-bottom: 20px;
+        /* letter-spacing: 13px */ }
+      .background-green ul li p {
+        font-size: 25px; }
+
+.background-simple {
+  background: #f1f1f1;
+  width: 100%;
+  margin-top: 90px;
+  height: 357px; }
+  @media screen and (max-width: 430px) {
+    .background-simple {
+      display: none; } }
+  .background-simple h3 {
+    width: 100%;
+    text-align: center;
+    font-family: "Lobster", sans-serif;
+    font-size: 45px; }
+  .background-simple p {
+    width: 75%;
+    margin: 0 auto;
+    margin-top: 60px;
+    text-align: center;
+    line-height: 28px;
+    font-size: 20px; }
+  .background-simple hr {
+    width: 41%; }
+  .background-simple ul {
+    margin: 0 auto;
+    width: 91%;
+    margin-top: 20px; }
+    .background-simple ul li {
+      width: 23%;
+      display: inline-block; }
+      .background-simple ul li article {
+        width: 100%;
+        margin: 0 auto;
+        font-family: "Lobster";
+        font-size: 20px;
+        background: #009688;
+        box-shadow: none;
+        height: inherit;
+        text-align: center;
+        padding: 46px;
+        box-sizing: border-box; }
+        .background-simple ul li article i {
+          font-size: 50px; }
+
 h1 {
   display: none; }
 
@@ -3076,6 +3149,8 @@ header {
     text-decoration: none;
     color: #009688;
     transition: 1s; }
+    header a h4 {
+      font-family: "Lobster"; }
     header a:hover {
       color: #B2DFDB; }
   header i {
@@ -3184,7 +3259,8 @@ header {
 
 .short-section {
   height: 600px;
-  width: 95%; }
+  width: 95%;
+  margin-top: 80px; }
   .short-section .short-video {
     width: 49%;
     display: inline-block; }

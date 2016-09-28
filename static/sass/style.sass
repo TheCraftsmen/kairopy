@@ -1,5 +1,6 @@
 @import "reset"
 @import 'https://fonts.googleapis.com/css?family=Roboto:300,300i,400,700'
+@import 'https://fonts.googleapis.com/css?family=Lobster'
 @import 'ionicons'
 
 $primary-color: #009688
@@ -7,6 +8,77 @@ $icon-color: #f1f1f1
 $green-background: #00796B
 $grey-background: #f1f1f1
 $light-background: #B2DFDB
+
+
+.background-green
+    font-family: 'Lobster', sans-serif
+    background: $primary-color
+    width: 100%
+    margin-top: 0
+    height: 357px
+    @media screen and (max-width: 430px)
+        display: none
+    ul
+        margin: 0px auto
+        width: 50%
+        li
+            text-align: center
+            margin-top: 40px
+            width: 45%
+            img
+                position: relative
+                top: 39px
+                left: 8px
+            h2 
+                font-size: 90px
+                text-transform: capitalize
+                font-weight: 700
+                margin-bottom: 20px
+                /* letter-spacing: 13px */
+            p
+                font-size: 25px
+
+.background-simple
+    background: $grey-background
+    width: 100%
+    margin-top: 90px
+    height: 357px
+    @media screen and (max-width: 430px)
+        display: none
+    h3
+        width: 100%
+        text-align: center
+        font-family: 'Lobster', sans-serif
+        font-size: 45px
+    p
+        width: 75%
+        margin: 0 auto
+        margin-top: 60px
+        text-align: center
+        line-height: 28px
+        font-size: 20px
+    hr
+        width: 41%
+    ul 
+        margin: 0 auto
+        width: 91%
+        margin-top: 20px
+        li
+            width: 23%
+            display: inline-block
+            article
+                width: 100%
+                margin: 0 auto
+                font-family: "Lobster"
+                font-size: 20px
+                background: $primary-color
+                box-shadow: none
+                height: inherit
+                text-align: center
+                padding: 46px
+                box-sizing: border-box
+                i
+                    font-size: 50px
 
 h1
     display: none
@@ -69,6 +141,8 @@ header
         text-decoration: none
         color: $primary-color   
         transition: 1s
+        h4
+            font-family: 'Lobster'
         &:hover
             color: #B2DFDB
     i
@@ -174,6 +248,7 @@ header
 .short-section
     height: 600px
     width: 95%
+    margin-top: 80px
     .short-video
         width: 49%
         display: inline-block
