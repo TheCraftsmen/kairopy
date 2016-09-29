@@ -3371,7 +3371,8 @@ section {
     section form input, section form .text {
       border: none;
       width: 100%;
-      height: 53px; }
+      height: 53px;
+      box-sizing: border-box; }
       section form input:focus, section form .text:focus {
         outline: none; }
     section form h3 {
