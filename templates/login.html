@@ -2,6 +2,9 @@
 
 {% block content %}
 
+<link rel="stylesheet" type="text/css" href="http://cdnjs.cloudflare.com/ajax/libs/qtip2/3.0.3/jquery.qtip.min.css">
+<script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/qtip2/3.0.3/jquery.qtip.min.js"></script>
+
 <nav>
     <header class="login-header">
         <ul class="left-nav">
@@ -20,10 +23,10 @@
                     {{ form.csrf_token }}
                     <i class="ion-person"></i>
                     <!-- <input class="text" type="text" name="username"> -->
-                    {{ form.username(class="text", required="required") }}
+                    {{ form.username(class="text", required="required", id="username") }}
                     <i class="ion-key"></i>
                     <!-- <input class="text" type="password" name="password"> -->
-                    {{ form.password(class="text", required="required") }}
+                    {{ form.password(class="text", required="required", id="password") }}
                     <a href="/logup">
                         <i class="ion-person-add">
                         </i>
@@ -35,6 +38,37 @@
                     <input class="submit" type="submit" name="enter" value="ingresar">
 
                 </form>
+
+                <script type="text/javascript">
+                function focusInput(classname, inputid){
+                    $(classname).click(function(){
+                        $(inputid).focus();
+                    });
+                }
+                focusInput('.ion-person', '#username')
+                focusInput('.ion-key', '#password')
+
+                function addToolTip(classname, text, ready){
+                    $(classname).qtip({
+                        id: 'signup',
+                         show: {
+                            ready: ready
+                        },
+                        content: {
+                            text: text
+                        },
+                        position: {my: 'top right', 
+                                   adjust: { x: -20, 
+                                             y: 0 
+                                            }
+                        }
+                    });
+                } 
+                addToolTip('.ion-person-add', 'Registrate Aqui!', true)
+                addToolTip('.ion-person', 'Ingrese Usuario', false)
+                addToolTip('.ion-key', 'Ingrese Contraseña', false)
+                addToolTip('.ion-help-buoy', 'Olvidaste tu Contraseña?', false)
+                </script>
             </li>
         </ul>
     </header>
