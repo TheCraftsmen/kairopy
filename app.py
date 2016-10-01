@@ -353,7 +353,7 @@ def customer_all_turn():
 def getCustomerAllTurn():
     all_turn_user_id = []
     responseDict = {}
-    customerTurn = 'select rl.table_id, u.username, u.id, rl.number from requestlist rl '
+    customerTurn = 'select rl.table_id, u.username, u.id, rl.number from requestList rl '
     customerTurn += 'inner join users u on rl.user_id = u.id '
     customerTurn += 'where cust_name = "%s" ' % (current_user.get_name())
     customerTurn += 'and status = 0 '
@@ -366,7 +366,7 @@ def getCustomerAllTurn():
 
 def getMaxTurnfordealer(alldealer, responseDict):
     maxturnfordealerdic = {}
-    maxTurnfordealer = 'select  user_id, max(number) as number from requestlist '
+    maxTurnfordealer = 'select  user_id, max(number) as number from requestList '
     maxTurnfordealer += 'where status > 1 '
     maxTurnfordealer += 'and user_id in (%s)' % alldealer
     maxTurnfordealer += 'group by user_id '
