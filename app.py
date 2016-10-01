@@ -103,6 +103,7 @@ def request_view():
             user_id=current_user.get_id())
             db.session.add(rl)
             db.session.commit()
+            return jsonify({'data': [{'number': str(pNumber)}]})
     return render_template('request.html')
 
 

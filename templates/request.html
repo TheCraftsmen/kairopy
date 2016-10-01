@@ -1,13 +1,53 @@
 {% extends "dealer.html" %}
 {% block dealercontent %}
 
+<script src="{{ url_for('static', filename='vex.combined.min.js') }}"></script>
+<script>vex.defaultOptions.className = 'vex-theme-os'</script>
+<link rel="stylesheet" href="{{ url_for('static', filename='css/vex.css') }}" />
+<link rel="stylesheet" href="{{ url_for('static', filename='css/vex-theme-os.css') }}" />
+<link rel="stylesheet" href="{{ url_for('static', filename='css/vex-theme-flat-attack.css') }}" />
+
 <section>
-  <form action="" method="post" role="form">
+  <form id="new_request" method="post" onsubmit="modelSuccess(); return false">
     <h3>Turno Nuevo</h3>
     <input class="text" type="text" name="cust_name" id="cust_name" placeholder="nombre" required="required">
     <input class="text" type="text" name="request_type" id="request_type" placeholder="descripcion" required="required">
     <input class="submit" type="submit" name="create" value="crear">
   </form>
 </section>
+
+<script type="text/javascript">
+	function modelSuccess(){
+		$.ajax({
+            url: '/request',
+            type: 'POST',
+            data: $('#new_request').serialize(),
+            success: function(response){
+              	var responseText = ''
+              	var obj = response.data;
+              	for(key in obj) {
+                  	if(obj.hasOwnProperty(key)) {
+                      	var value = obj[key];
+                      	responseText = value.number;
+                  	}
+              	}
+              	vex.defaultOptions.className = 'vex-theme-os'
+				vex.dialog.alert({
+				    message: 'Turno Numero: ' + responseText + ' .Revise su posición en el monitor.',
+				    className: 'vex-theme-flat-attack' // Overwrites defaultOptions
+				})
+				document.getElementById("cust_name").value = '';
+                document.getElementById("request_type").value = '';
+            },
+            error:  function(response){
+              	vex.defaultOptions.className = 'vex-theme-os'
+				vex.dialog.alert({
+				    message: 'error.',
+				    className: 'vex-theme-flat-attack' // Overwrites defaultOptions
+				})
+            }
+          });
+	}
+</script>
 
 {% endblock %}
