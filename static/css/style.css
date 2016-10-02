@@ -3022,27 +3022,52 @@ table {
   .background-green ul {
     margin: 0px auto;
     width: 50%; }
+    @media screen and (max-width: 920px) {
+      .background-green ul {
+        width: 100%; } }
     .background-green ul li {
       text-align: center;
       margin-top: 40px;
       width: 45%; }
+      @media screen and (max-width: 920px) {
+        .background-green ul li {
+          margin-top: 0;
+          margin: 0;
+          width: 38%; } }
+      @media screen and (max-width: 800px) {
+        .background-green ul li {
+          display: block;
+          width: 100%; } }
       .background-green ul li img {
         position: relative;
         top: 39px;
         left: 8px; }
+        @media screen and (max-width: 800px) {
+          .background-green ul li img {
+            position: inherit;
+            width: 32%; } }
       .background-green ul li h2 {
         font-size: 90px;
         font-weight: 700;
         margin-bottom: 20px;
         /* letter-spacing: 13px */ }
+        @media screen and (max-width: 800px) {
+          .background-green ul li h2 {
+            font-size: 83px; } }
       .background-green ul li p {
         font-size: 25px; }
+        @media screen and (max-width: 800px) {
+          .background-green ul li p {
+            display: none; } }
 
 .background-simple {
   background: #f1f1f1;
   width: 100%;
   margin-top: 90px;
   height: 357px; }
+  @media screen and (max-width: 920px) {
+    .background-simple {
+      height: inherit; } }
   @media screen and (max-width: 430px) {
     .background-simple {
       display: none; } }
@@ -3067,6 +3092,14 @@ table {
     .background-simple ul li {
       width: 23%;
       display: inline-block; }
+      @media screen and (max-width: 1120px) {
+        .background-simple ul li {
+          width: 23%;
+          margin: 6px; } }
+      @media screen and (max-width: 920px) {
+        .background-simple ul li {
+          width: 100%;
+          margin: 6px; } }
       .background-simple ul li article {
         width: 100%;
         margin: 0 auto;
@@ -3078,6 +3111,10 @@ table {
         text-align: center;
         padding: 46px;
         box-sizing: border-box; }
+        @media screen and (max-width: 1120px) {
+          .background-simple ul li article {
+            font-size: 16px;
+            padding: 25px; } }
         .background-simple ul li article i {
           font-size: 50px; }
 
@@ -3144,6 +3181,9 @@ header {
   color: #009688;
   font-size: 30px;
   padding-top: 10px; }
+  @media screen and (max-width: 1120px) {
+    header {
+      height: inherit; } }
   header a {
     text-decoration: none;
     color: #009688;
@@ -3162,11 +3202,19 @@ header {
       background: #B2DFDB; }
   header .left-nav {
     float: left; }
+    @media screen and (max-width: 1120px) {
+      header .left-nav {
+        float: none;
+        display: block; } }
     header .left-nav li .text-red {
       font-size: 22px;
       color: #B02C0C; }
   header .right-nav {
     float: right; }
+    @media screen and (max-width: 1120px) {
+      header .right-nav {
+        float: none;
+        display: block; } }
   header li {
     font-family: "Roboto", cursive;
     display: inline-block;
@@ -3174,6 +3222,16 @@ header {
     @media screen and (max-width: 430px) {
       header li {
         margin: 0 0; } }
+    @media screen and (max-width: 650px) {
+      header li {
+        width: 100%;
+        margin: 0; }
+        header li .ion-key {
+          margin-right: 11px; }
+        header li a {
+          display: block;
+          margin: 0 auto;
+          text-align: center; } }
     header li .text {
       color: #009688;
       font-weight: 400;
@@ -3183,6 +3241,9 @@ header {
       top: -4px;
       background: black;
       border-bottom: 2px solid #009688; }
+      @media screen and (max-width: 650px) {
+        header li .text {
+          width: 91%; } }
       header li .text:focus {
         outline: none; }
     header li .submit {
@@ -3193,6 +3254,10 @@ header {
       position: relative;
       top: -9px;
       font-size: 12px; }
+      @media screen and (max-width: 650px) {
+        header li .submit {
+          width: 100%;
+          margin-top: 20px; } }
       header li .submit:focus {
         outline: none; }
 
@@ -3200,7 +3265,7 @@ header {
   background: #f1f1f1;
   height: 900px;
   margin: 0 auto;
-  margin-top: 7px;
+  /* margin-top: 7px */
   width: 100%; }
   @media screen and (max-width: 800px) {
     .monitor-section {
@@ -3208,7 +3273,7 @@ header {
   .monitor-section .medium {
     float: left;
     width: 39%;
-    margin-left: 10px; }
+    /* margin-left: 10px */ }
     @media screen and (max-width: 800px) {
       .monitor-section .medium {
         float: none;
@@ -3216,8 +3281,9 @@ header {
         margin: 0 0; } }
   .monitor-section .large {
     float: left;
-    width: 60%;
-    margin-left: 24px; }
+    width: 66%;
+    /* margin-left: 24px */
+    box-shadow: 0 0 0 0; }
     @media screen and (max-width: 800px) {
       .monitor-section .large {
         float: none;
@@ -3234,10 +3300,10 @@ header {
         margin: 0 0; } }
   .monitor-section .small {
     margin: 0 auto;
-    float: right;
+    float: left;
     width: 34%;
     height: 300px;
-    margin-right: 24px; }
+    /* margin-right: 24px */ }
     .monitor-section .small ul li {
       width: 100%;
       margin: 0 auto; }
@@ -3249,6 +3315,22 @@ header {
         .monitor-section .small ul li article p {
           font-size: 160px;
           padding-top: 35px; }
+    .monitor-section .small h3 {
+      padding: 16px; }
+    .monitor-section .small .bx-controls-direction, .monitor-section .small .bx-default-pager {
+      display: none; }
+    .monitor-section .small .bx-viewport {
+      -moz-box-shadow: 0 0 0 0;
+      -webkit-box-shadow: 0 0 0 0;
+      box-shadow: 0 0 0 0;
+      border: 0px;
+      left: 0px;
+      background: #fff;
+      -webkit-transform: translatez(0);
+      -moz-transform: translatez(0);
+      -ms-transform: translatez(0);
+      -o-transform: translatez(0);
+      transform: translatez(0); }
     @media screen and (max-width: 800px) {
       .monitor-section .small {
         display: none;

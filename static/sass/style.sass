@@ -21,27 +21,45 @@ $light-background: #B2DFDB
     ul
         margin: 0px auto
         width: 50%
+        @media screen and (max-width: 920px)
+            width: 100%
         li
             text-align: center
             margin-top: 40px
             width: 45%
+            @media screen and (max-width: 920px)
+                margin-top: 0
+                margin: 0
+                width: 38%
+            @media screen and (max-width: 800px)
+                display: block
+                width: 100%
             img
                 position: relative
                 top: 39px
                 left: 8px
+                @media screen and (max-width: 800px)
+                    position: inherit
+                    width: 32%
             h2 
                 font-size: 90px
                 font-weight: 700
                 margin-bottom: 20px
                 /* letter-spacing: 13px */
+                @media screen and (max-width: 800px)
+                    font-size: 83px
             p
                 font-size: 25px
+                @media screen and (max-width: 800px)
+                    display: none
 
 .background-simple
     background: $grey-background
     width: 100%
     margin-top: 90px
     height: 357px
+    @media screen and (max-width: 920px)
+        height: inherit
     @media screen and (max-width: 430px)
         display: none
     h3
@@ -65,6 +83,12 @@ $light-background: #B2DFDB
         li
             width: 23%
             display: inline-block
+            @media screen and (max-width: 1120px)
+                width: 23%
+                margin: 6px
+            @media screen and (max-width: 920px)
+                width: 100%
+                margin: 6px
             article
                 width: 100%
                 margin: 0 auto
@@ -76,6 +100,9 @@ $light-background: #B2DFDB
                 text-align: center
                 padding: 46px
                 box-sizing: border-box
+                @media screen and (max-width: 1120px)
+                    font-size: 16px
+                    padding: 25px
                 i
                     font-size: 50px
 
@@ -136,6 +163,8 @@ header
     width: 100%
     background: black
     color: $primary-color
+    @media screen and (max-width: 1120px)
+        height: inherit
     a
         text-decoration: none
         color: $primary-color   
@@ -156,17 +185,32 @@ header
     padding-top: 10px
     .left-nav
         float: left
+        @media screen and (max-width: 1120px)
+            float: none
+            display: block
         li .text-red
             font-size: 22px
             color: #B02C0C
     .right-nav
         float: right
+        @media screen and (max-width: 1120px)
+            float: none
+            display: block
     li
         @media screen and (max-width:430px)
             margin: 0 0
         font-family: 'Roboto', cursive
         display: inline-block
         margin: 15px
+        @media screen and (max-width:650px)
+            .ion-key
+                margin-right: 11px
+            a
+                display: block
+                margin: 0 auto
+                text-align: center
+            width: 100%
+            margin: 0
         .text
             color: #009688
             font-weight: 400 
@@ -176,6 +220,8 @@ header
             top: -4px
             background: black
             border-bottom: 2px solid #009688
+            @media screen and (max-width:650px)
+                width: 91%
             &:focus
                 outline: none
         .submit
@@ -186,6 +232,9 @@ header
             position: relative
             top: -9px
             font-size: 12px
+            @media screen and (max-width:650px)
+                width: 100%
+                margin-top: 20px
             &:focus
                 outline: none
 
@@ -193,22 +242,23 @@ header
     background: $icon-color
     height: 900px
     margin: 0 auto
-    margin-top: 7px
+    /* margin-top: 7px */
     @media screen and (max-width:800px)
         margin-top: 0
     width: 100%
     .medium
         float: left
         width: 39%
-        margin-left: 10px
+        /* margin-left: 10px */
         @media screen and (max-width:800px)
             float: none
             width: 100%
             margin: 0 0
     .large
         float: left
-        width: 60%
-        margin-left: 24px
+        width: 66%
+        /* margin-left: 24px */
+        box-shadow: 0 0 0 0
         @media screen and (max-width:800px)
             float: none
             width: 100%
@@ -234,15 +284,31 @@ header
                     font-size: 160px
                     padding-top: 35px
         margin: 0 auto
-        float: right
+        float: left
         width: 34%
+        h3
+            padding: 16px
+        .bx-controls-direction, .bx-default-pager
+            display: none
+        .bx-viewport
+            -moz-box-shadow: 0 0 0 0
+            -webkit-box-shadow: 0 0 0 0
+            box-shadow: 0 0 0 0
+            border: 0px
+            left: 0px
+            background: #fff
+            -webkit-transform: translatez(0)
+            -moz-transform: translatez(0)
+            -ms-transform: translatez(0)
+            -o-transform: translatez(0)
+            transform: translatez(0)
         @media screen and (max-width:800px)
             display: none
             float: none
             width: 100%
             margin: 0 0
         height: 300px
-        margin-right: 24px
+        /* margin-right: 24px */
 
 .short-section
     height: 600px

@@ -14,14 +14,14 @@
     <meta name="ABSTRACT" content="kairopy.com sistema de turnos online gratuito para comercios" />
     <title>kairopy | sistema de turnos</title>
     <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}">
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
     <script type="text/javascript" src="static/jquery-1.11.3.min.js">
-    </script>
-    <script type="text/javascript">
-      var $SCRIPT_ROOT = {{ request.script_root|tojson|safe }};
     </script>
     <script type="text/javascript" src='static/bxslider/jquery.bxslider.js'></script>
     <link rel="stylesheet" href="{{ url_for('static', filename='bxslider/jquery.bxslider.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <script type="text/javascript">
+      var $SCRIPT_ROOT = {{ request.script_root|tojson|safe }};
+    </script>
   </head>
   <body>
   <h1>sistema de turnos online gratuito</h1>
