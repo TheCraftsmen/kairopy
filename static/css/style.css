@@ -3157,9 +3157,16 @@ body {
     body {
       background: black; } }
 
+@media screen and (max-width: 750px) {
+  .login-header {
+    height: inherit;
+    width: 100%;
+    position: inherit; } }
 @media screen and (max-width: 430px) {
   .login-header {
-    height: 500px; }
+    height: inherit;
+    width: 100%;
+    position: inherit; }
     .login-header .left-nav, .login-header .right-nav {
       float: none; }
       .login-header .left-nav li, .login-header .right-nav li {
