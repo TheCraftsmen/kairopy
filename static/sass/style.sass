@@ -9,6 +9,26 @@ $green-background: #00796B
 $grey-background: #f1f1f1
 $light-background: #B2DFDB
 
+.ion-navicon
+    display: none
+    color: $primary-color
+    margin-left: 6px
+    @media screen and (max-width: 750px)
+        display: inherit
+        font-size: 40px
+
+#main 
+    transition: margin-left .5s
+
+.closebtn
+    display: none
+    @media screen and (max-width: 750px)
+        display: inherit
+        position: absolute
+        top: 0
+        right: 25px
+        font-size: 36px
+        margin-left: 50px
 
 .background-green
     font-family: 'Lobster', sans-serif
@@ -163,8 +183,15 @@ header
     width: 100%
     background: black
     color: $primary-color
-    @media screen and (max-width: 1120px)
-        height: inherit
+    @media screen and (max-width: 750px)
+        position: fixed
+        height: 100%
+        width: 0
+        overflow-x: hidden
+        z-index: 1
+        transition: 0.5s
+        a
+            display: block
     a
         text-decoration: none
         color: $primary-color   
@@ -329,12 +356,12 @@ section
     width: 80%
     @media screen and (max-width:800px)
         margin: 0 0
-        height: 870px
+        height: inherit
         width: 100%
     @media screen and (max-width:430px)
         margin: 0 0
         width: 100%
-        height: 971px
+        height: inherit
     article
         width: 100%
         background: black none repeat scroll 0% 0%
@@ -474,6 +501,9 @@ section
         li, .tutorial
             display: inline-block
             margin: 10px
+            @media screen and (max-width:780px)
+                width: 100%
+                margin: 0
             @media screen and (max-width:430px)
                 display: block
                 margin: 0 0
@@ -530,8 +560,9 @@ section
         .tb-text
             cursor: pointer
             text-align: center
-            font-weight: 400
+            font-weight: 700
             transition: 2s ease
+            padding: 0
             &:hover
                 background: black
                 color: $primary-color

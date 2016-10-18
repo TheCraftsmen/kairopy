@@ -2,9 +2,15 @@
 
 {% block content %}
 
-<header>
+<header id="sideNav">
     <nav>
       <ul class="left-nav">
+        <li>
+          <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">
+            <i class="ion-close-round">
+            </i>
+          </a>
+        </li>
         <li>
           <a href="/logout">
             <i class="ion-power">
@@ -55,6 +61,17 @@
       </ul>
     </nav>
   </header>
+  <i class="ion-navicon"  onclick="openNav();"></i>
+<script type="text/javascript">
+  function openNav() {
+    document.getElementById("sideNav").style.width = "250px";
+    document.getElementById("main").style.marginLeft = "250px";
+  }
+  function closeNav() {
+    document.getElementById("sideNav").style.width = "0px";
+    document.getElementById("main").style.marginLeft = "0px";
+  }
+</script>
 
 {% block dealercontent %}{% endblock %}
 
