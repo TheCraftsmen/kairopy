@@ -33,7 +33,7 @@
                 texto += "<th onclick='rid()' class='black-green' id='rid' >" + settings.column_turn + "</th>";
                 texto += "<th onclick='rcn()' class='black-green' id='rcn' >" + settings.column_custname + "</th>";
                 texto += "<th onclick='rrt()' class='black-green' id='rrt' >" + settings.column_type + "</th>";
-                texto += "<th class='small-table black-green'>Finalizar</th>";
+                /*texto += "<th class='small-table black-green'>Finalizar</th>";*/
                 texto += "</tr>";
               });
               $.each(datos.allTurn, function(i, allTurn){
@@ -41,7 +41,7 @@
                 texto += "<td class='text-center' >" + allTurn.number + "</td>";
                 texto += "<td class='text-center' >" + allTurn.cust_name + "</td>";
                 texto += "<td class='text-center'' >" + allTurn.request_type + "</td>";
-                texto += "<td class='small-table'><i class='ion-android-close'></i></td>";
+                /*texto += "<td class='small-table'><i class='ion-android-close'></i></td>";*/
                 texto += "</tr>";
               });
               $("#turnos").html(texto);

@@ -6,13 +6,11 @@
     <tr class="tb-head">
       <th class="black-green">oferta</th>
       <th class="black-green">descuento</th>
-      <th class="small-table black-green">finalizar</th>
     </tr >
     {% for row in offers %}
       <tr class="tb-text" onclick='updateRow("{{ row.table_id }}","{{ row.user_id }}")'>
         <td class="text-center">{{ row.offer_name }}</td>
         <td class="text-center">{{ row.offer_discount }}</td>
-        <td class="small-table"><i class="ion-android-close"></i></td>
       </tr>
     {% endfor %}
   </table>

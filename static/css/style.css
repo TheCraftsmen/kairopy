@@ -3345,7 +3345,7 @@ header {
       width: 100%;
       margin: 0 auto; }
       .monitor-section .small ul li article {
-        font-size: 30px;
+        font-size: 45px;
         text-align: center;
         height: 300px;
         box-shadow: 0px 0px 0px 0px; }
@@ -3353,7 +3353,9 @@ header {
           font-size: 160px;
           padding-top: 35px; }
     .monitor-section .small h3 {
-      padding: 16px; }
+      padding: 19px;
+      font-weight: 700;
+      border-bottom: 2px solid black; }
     .monitor-section .small .bx-controls-direction, .monitor-section .small .bx-default-pager {
       display: none; }
     .monitor-section .small .bx-viewport {
@@ -3498,13 +3500,14 @@ section {
       font-size: 61px;
       text-transform: uppercase;
       font-weight: 700;
-      background: black;
+      background: #009688;
+      color: black;
       padding: 13px; }
       @media screen and (max-width: 440px) {
         section form h3 {
           padding: 0 0;
           font-size: 56px; } }
-    section form .text, section form h3 {
+    section form .text {
       color: #009688; }
     section form .text {
       background: black;
@@ -3566,8 +3569,8 @@ section {
         box-shadow: 0px 1px 8px 1px;
         height: 250px; }
         section ul li article h3, section ul .tutorial article h3 {
-          background: black;
-          color: #009688;
+          background: #009688;
+          color: black;
           padding: 20px;
           text-align: center;
           text-transform: uppercase; }
@@ -3588,7 +3591,7 @@ section {
     margin: 0 auto;
     font-family: "Roboto";
     text-transform: capitalize;
-    font-size: 20px;
+    font-size: 43px;
     padding: 0px 46px;
     background: white;
     box-shadow: 0px 1px 8px 1px; }
@@ -3600,8 +3603,8 @@ section {
     section table .small-table {
       padding: 10px; }
     section table .black-green {
-      background: black;
-      color: #009688; }
+      background: #009688;
+      color: black; }
     section table th, section table td {
       padding: 20px; }
     section table .tb-head {
@@ -3763,5 +3766,10 @@ footer {
     text-align: center;
     padding-top: 15px;
     text-transform: capitalize; }
+
+.fx {
+  width: 100%;
+  margin-top: 0;
+  margin: 0 auto; }
 
 /*# sourceMappingURL=style.css.map */
