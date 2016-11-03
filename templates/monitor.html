@@ -1,6 +1,9 @@
 {% extends "dealer.html" %}
 {% block dealercontent %}
-
+<script type="text/javascript">
+  ID = "{{ current_user.get_id() }}"
+</script>
+<script type="text/javascript" src="{{ url_for('static', filename='monitor.js') }}"></script>
 <section class="monitor-section">
   <table class="large" id="turnos">
   </table>
@@ -17,112 +20,6 @@
     </ul>
   </article>
 </section>
-<script type="text/javascript">
-  $(document).ready(function(){
-    $('.bxslider').bxSlider({auto:true});
-  });
-</script>
- <script>
-  $(document).ready(function(){
-          setInterval(function(){
-            var texto = "";
-            $.getJSON($SCRIPT_ROOT + '/_all_turn/'+ {{ current_user.get_id() }}, function(datos){
-              $.each(datos.settings, function(i, settings){
-                console.log(settings.column_turn)
-                texto += "<tr class='tb-head'>";
-                texto += "<th onclick='rid()' class='black-green' id='rid' >" + settings.column_turn + "</th>";
-                texto += "<th onclick='rcn()' class='black-green' id='rcn' >" + settings.column_custname + "</th>";
-                texto += "<th onclick='rrt()' class='black-green' id='rrt' >" + settings.column_type + "</th>";
-                /*texto += "<th class='small-table black-green'>Finalizar</th>";*/
-                texto += "</tr>";
-              });
-              $.each(datos.allTurn, function(i, allTurn){
-                texto += "<tr class='tb-text' onclick='updateRow(" + allTurn.table_id + "," + allTurn.user_id + ")' >";
-                texto += "<td class='text-center' >" + allTurn.number + "</td>";
-                texto += "<td class='text-center' >" + allTurn.cust_name + "</td>";
-                texto += "<td class='text-center'' >" + allTurn.request_type + "</td>";
-                /*texto += "<td class='small-table'><i class='ion-android-close'></i></td>";*/
-                texto += "</tr>";
-              });
-              $("#turnos").html(texto);
-            });
-          }, 1000);
-      });
- </script>
- <script>
- function updateRow(value, user){
-    console.log(value)
-    var rute = '/_update_status/' + value.toString() + '/' + user
-    console.log(rute)
-    $.ajax({
-      url: $SCRIPT_ROOT + '/_update_status/' + value.toString() + '/' + user,
-      type: 'PUT',
-      success: function(response) {
-        console.log('puto el que lee')
-      }
-    });
-  }
 
-  function cleanall(){
-      $.ajax({
-        url: $SCRIPT_ROOT + '/_clean_all/' + {{ current_user.get_id() }},
-        type: 'PUT',
-        success: function(response) {
-          console.log('puto el que lee')
-        }
-      });
-  }
-
- </script>
-
-<script>
-  function rid(){
-    var person = prompt("Ingrese Nombre de Columna", "");
-    
-    if (person != null) {
-        //document.getElementById("myButton1").value="Close Curtain";
-        document.getElementById("rid").innerHTML = person;
-        $.ajax({
-            url: $SCRIPT_ROOT + '/_change_settings/' + {{ current_user.get_id() }} + '/column_turn/' + person,
-            type: 'PUT',
-            success: function(response) {
-              console.log('puto el que lee')
-            }
-          });
-    }
-  }
-
-  function rcn(){
-    var person = prompt("Ingrese Nombre de Columna", "");
-    
-    if (person != null) {
-        //document.getElementById("myButton1").value="Close Curtain";
-        document.getElementById("rcn").innerHTML = person;
-        $.ajax({
-            url: $SCRIPT_ROOT + '/_change_settings/' + {{ current_user.get_id() }} + '/column_custname/' + person,
-            type: 'PUT',
-            success: function(response) {
-              console.log('puto el que lee')
-            }
-          });
-    }
-  }
-
-  function rrt(){
-    var person = prompt("Ingrese Nombre de Columna", "");
-    
-    if (person != null) {
-        //document.getElementById("myButton1").value="Close Curtain";
-        document.getElementById("rrt").innerHTML = person;
-        $.ajax({
-            url: $SCRIPT_ROOT + '/_change_settings/' + {{ current_user.get_id() }} + '/column_type/' + person,
-            type: 'PUT',
-            success: function(response) {
-              console.log('puto el que lee')
-            }
-          });
-    }
-  }
-</script>
 
 {% endblock %}
